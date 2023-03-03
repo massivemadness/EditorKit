@@ -20,8 +20,8 @@ class PluginSupplier private constructor() {
 
     private val plugins = mutableSetOf<EditorPlugin>()
 
-    fun <T : EditorPlugin> plugin(plugin: T, block: T.() -> Unit = {}) {
-        plugins.add(plugin.apply(block))
+    fun <T : EditorPlugin> plugin(plugin: T) {
+        plugins.add(plugin)
     }
 
     fun supply(): Set<EditorPlugin> {

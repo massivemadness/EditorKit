@@ -19,5 +19,5 @@ package com.blacksquircle.ui.editorkit.plugin.textscroller
 import com.blacksquircle.ui.editorkit.plugin.base.PluginSupplier
 
 fun PluginSupplier.textScroller(block: TextScrollerPlugin.() -> Unit = {}) {
-    plugin(TextScrollerPlugin(), block)
+    plugin(TextScrollerPlugin().apply(block))
 }

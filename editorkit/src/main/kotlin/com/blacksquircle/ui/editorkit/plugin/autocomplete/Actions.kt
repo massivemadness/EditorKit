@@ -26,5 +26,5 @@ var PluginContainer.suggestionAdapter: SuggestionAdapter?
     }
 
 fun PluginSupplier.codeCompletion(block: AutoCompletePlugin.() -> Unit = {}) {
-    plugin(AutoCompletePlugin(), block)
+    plugin(AutoCompletePlugin().apply(block))
 }

@@ -19,5 +19,5 @@ package com.blacksquircle.ui.editorkit.plugin.delimiters
 import com.blacksquircle.ui.editorkit.plugin.base.PluginSupplier
 
 fun PluginSupplier.highlightDelimiters(block: BracketsHighlightPlugin.() -> Unit = {}) {
-    plugin(BracketsHighlightPlugin(), block)
+    plugin(BracketsHighlightPlugin().apply(block))
 }

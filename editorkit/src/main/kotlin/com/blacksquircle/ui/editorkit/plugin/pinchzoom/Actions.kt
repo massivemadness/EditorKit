@@ -19,5 +19,5 @@ package com.blacksquircle.ui.editorkit.plugin.pinchzoom
 import com.blacksquircle.ui.editorkit.plugin.base.PluginSupplier
 
 fun PluginSupplier.pinchZoom(block: PinchZoomPlugin.() -> Unit = {}) {
-    plugin(PinchZoomPlugin(), block)
+    plugin(PinchZoomPlugin().apply(block))
 }

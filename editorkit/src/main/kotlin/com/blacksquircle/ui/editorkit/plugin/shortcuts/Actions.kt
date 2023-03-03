@@ -26,5 +26,5 @@ var PluginContainer.onShortcutListener: OnShortcutListener?
     }
 
 fun PluginSupplier.shortcuts(block: ShortcutsPlugin.() -> Unit = {}) {
-    plugin(ShortcutsPlugin(), block)
+    plugin(ShortcutsPlugin().apply(block))
 }

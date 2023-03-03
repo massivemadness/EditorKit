@@ -26,5 +26,5 @@ var PluginContainer.onChangeListener: OnChangeListener?
     }
 
 fun PluginSupplier.changeDetector(block: DirtyTextPlugin.() -> Unit = {}) {
-    plugin(DirtyTextPlugin(), block)
+    plugin(DirtyTextPlugin().apply(block))
 }

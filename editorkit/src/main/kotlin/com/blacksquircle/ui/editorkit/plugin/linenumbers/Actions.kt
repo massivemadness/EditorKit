@@ -19,5 +19,5 @@ package com.blacksquircle.ui.editorkit.plugin.linenumbers
 import com.blacksquircle.ui.editorkit.plugin.base.PluginSupplier
 
 fun PluginSupplier.lineNumbers(block: LineNumbersPlugin.() -> Unit = {}) {
-    plugin(LineNumbersPlugin(), block)
+    plugin(LineNumbersPlugin().apply(block))
 }

@@ -19,5 +19,5 @@ package com.blacksquircle.ui.editorkit.plugin.autoindent
 import com.blacksquircle.ui.editorkit.plugin.base.PluginSupplier
 
 fun PluginSupplier.autoIndentation(block: AutoIndentPlugin.() -> Unit = {}) {
-    plugin(AutoIndentPlugin(), block)
+    plugin(AutoIndentPlugin().apply(block))
 }
