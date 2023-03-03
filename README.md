@@ -393,7 +393,8 @@ EditorTheme.MONOKAI
 EditorTheme.OBSIDIAN
 EditorTheme.LADIES_NIGHT
 EditorTheme.TOMORROW_NIGHT
-EditorTheme.VISUAL_STUDIO_2013
+EditorTheme.VISUAL_STUDIO
+EditorTheme.INTELLIJ_LIGHT
 
 ```
 

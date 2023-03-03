@@ -171,7 +171,7 @@ object EditorTheme {
         entityRefColor = Color.parseColor("#D49668"),
     )
 
-    val VISUAL_STUDIO_2013 = ColorScheme(
+    val VISUAL_STUDIO = ColorScheme(
         textColor = Color.parseColor("#C8C8C8"),
         cursorColor = Color.parseColor("#BBBBBB"),
         backgroundColor = Color.parseColor("#232323"),
@@ -199,5 +199,35 @@ object EditorTheme {
         attrNameColor = Color.parseColor("#C8C8C8"),
         attrValueColor = Color.parseColor("#CE9F89"),
         entityRefColor = Color.parseColor("#BACDAB"),
+    )
+
+    val INTELLIJ_LIGHT = ColorScheme(
+        textColor = Color.parseColor("#000000"),
+        cursorColor = Color.parseColor("#000000"),
+        backgroundColor = Color.parseColor("#FFFFFF"),
+        gutterColor = Color.parseColor("#F2F2F2"),
+        gutterDividerColor = Color.parseColor("#D4D4D4"),
+        gutterCurrentLineNumberColor = Color.parseColor("#828282"),
+        gutterTextColor = Color.parseColor("#ADADAD"),
+        selectedLineColor = Color.parseColor("#FCFAEE"),
+        selectionColor = Color.parseColor("#AFD1FB"),
+        suggestionQueryColor = Color.parseColor("#3A6EAE"),
+        findResultBackgroundColor = Color.parseColor("#E2FEDE"),
+        delimiterBackgroundColor = Color.parseColor("#A2D7D8"),
+        numberColor = Color.parseColor("#284FE2"),
+        operatorColor = Color.parseColor("#000000"),
+        keywordColor = Color.parseColor("#1232AC"),
+        typeColor = Color.parseColor("#1232AC"),
+        langConstColor = Color.parseColor("#1232AC"),
+        preprocessorColor = Color.parseColor("#9A892E"),
+        variableColor = Color.parseColor("#7C1E8F"),
+        methodColor = Color.parseColor("#286077"),
+        stringColor = Color.parseColor("#377B2A"),
+        commentColor = Color.parseColor("#8C8C8C"),
+        tagColor = Color.parseColor("#000000"),
+        tagNameColor = Color.parseColor("#1232AC"),
+        attrNameColor = Color.parseColor("#2649CC"),
+        attrValueColor = Color.parseColor("#377B2A"),
+        entityRefColor = Color.parseColor("#264ADD"),
     )
 }
