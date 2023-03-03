@@ -396,6 +396,7 @@ EditorTheme.TOMORROW_NIGHT
 EditorTheme.VISUAL_STUDIO
 EditorTheme.INTELLIJ_LIGHT
 EditorTheme.SOLARIZED_LIGHT
+EditorTheme.ECLIPSE
 
 ```
 
