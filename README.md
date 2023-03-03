@@ -395,6 +395,7 @@ EditorTheme.LADIES_NIGHT
 EditorTheme.TOMORROW_NIGHT
 EditorTheme.VISUAL_STUDIO
 EditorTheme.INTELLIJ_LIGHT
+EditorTheme.SOLARIZED_LIGHT
 
 ```
 
