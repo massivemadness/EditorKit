@@ -1,6 +1,6 @@
 # EditorKit
 
-**EditorKit** is a code editor library for Android.
+**EditorKit** is a multi-language code editor library for Android.
 
 ![Android CI](https://github.com/massivemadness/Squircle-CE/workflows/Android%20CI/badge.svg) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -10,7 +10,7 @@
 
 # Table of Contents
 
-## EditorKit
+## Code Editor
 
 1. [Gradle Dependency](#gradle-dependency)
 2. [The Basics](#the-basics)
@@ -36,7 +36,7 @@
 
 ---
 
-# EditorKit
+# Code Editor
 
 The `editorkit` module provides code editor without any support for
 programming languages.  
@@ -519,9 +519,9 @@ editor.plugins(pluginSupplier)
 
 The language modules provides support for programming languages. This
 includes syntax highlighting, code suggestions and source code parser.
-*(Note that source code parser currently works only in
+*~~(Note that source code parser currently works only in
 `language-javascript` module, but it will be implemented for more
-languages in the future)*
+languages in the future)~~*
 
 [![MavenCentral](https://img.shields.io/maven-central/v/com.blacksquircle.ui/language-base?label=Download)](https://repo1.maven.org/maven2/com/blacksquircle/ui/language-base/)
 
