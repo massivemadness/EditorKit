@@ -15,14 +15,14 @@
 1. [Gradle Dependency](#gradle-dependency)
 2. [The Basics](#the-basics)
 3. [More Options](#more-options)
-   1. [Configuration](#configuration)
-   2. [Text Scroller](#text-scroller)
+    1. [Configuration](#configuration)
+    2. [Text Scroller](#text-scroller)
 4. [Code Suggestions](#code-suggestions)
 5. [Undo Redo](#undo-redo)
 6. [Navigation](#navigation)
-   1. [Text Navigation](#text-navigation)
-   2. [Find and Replace](#find-and-replace)
-   3. [Shortcuts](#shortcuts)
+    1. [Text Navigation](#text-navigation)
+    2. [Find and Replace](#find-and-replace)
+    3. [Shortcuts](#shortcuts)
 7. [Theming](#theming)
 8. [Custom Plugin](#custom-plugin)
 
@@ -30,9 +30,9 @@
 
 1. [Gradle Dependency](#gradle-dependency-1)
 2. [Custom Language](#custom-language)
-   1. [LanguageParser](#languageparser)
-   2. [SuggestionProvider](#suggestionprovider)
-   3. [LanguageStyler](#languagestyler)
+    1. [LanguageParser](#languageparser)
+    2. [SuggestionProvider](#suggestionprovider)
+    3. [LanguageStyler](#languagestyler)
 
 ---
 
@@ -119,7 +119,7 @@ shown below:
 val pluginSupplier = PluginSupplier.create {
     pinchZoom { // whether the zoom gesture enabled
         minTextSize = 10f
-        maxTextSize = 20f 
+        maxTextSize = 20f
     }
     lineNumbers {
         lineNumbers = true // line numbers visibility
@@ -220,11 +220,11 @@ class AutoCompleteAdapter(context: Context) : SuggestionAdapter(context, R.layou
         val view = inflater.inflate(R.layout.item_suggestion, parent, false)
         return AutoCompleteViewHolder(view)
     }
-    
+
     class AutoCompleteViewHolder(itemView: View) : SuggestionViewHolder(itemView) {
-    
+
         private val title: TextView = itemView.findViewById(R.id.title)
-        
+
         override fun bind(suggestion: Suggestion?, query: String) {
             title.text = suggestion?.text
         }
@@ -277,7 +277,7 @@ editor.onUndoRedoChangedListener = object : OnUndoRedoChangedListener {
     override fun onUndoRedoChanged() {
         val canUndo = editor.canUndo()
         val canRedo = editor.canRedo()
-        
+
         // ...
     }
 }
@@ -314,6 +314,7 @@ try {
 
 The `TextProcessor` has built-in support for search and replace
 operations, including:
+
 - Search forward or backward
 - Regular Expressions
 - Match Case
@@ -321,12 +322,14 @@ operations, including:
 
 The class itself contains self-explanatory methods for all your
 searching needs:
+
 - `find(params)` - Find all possible results in text with provided options.
 - `replaceFindResult(replaceText)` - Finds current match and replaces it with new text.
 - `replaceAllFindResults(replaceText)` - Finds all matches and replaces them with the new text.
 - `findNext()` - Finds the next match and scrolls to it.
 - `findPrevious()` - Finds the previous match and scrolls to it.
-- `clearFindResultSpans()` - Clears all find spans on the screen. Call this method when you're done searching.
+- `clearFindResultSpans()` - Clears all find spans on the screen. Call this method when you're done
+  searching.
 
 ```kotlin
 import com.blacksquircle.ui.editorkit.model.FindParams
@@ -370,9 +373,7 @@ val pluginSupplier = PluginSupplier.create {
 }
 ```
 
-The `onShortcut` method will be invoked only if at least one of
-following keys is pressed: <kbd>ctrl</kbd>, <kbd>shift</kbd>,
-<kbd>alt</kbd>.  
+The `onShortcut` method will be invoked only if <kbd>ctrl</kbd> or <kbd>alt</kbd> is pressed.  
 You might already noticed that you have to return a `Boolean` value as
 the result of `onShortcut` method. Return `true` if the listener has
 consumed the shortcut event, `false` otherwise.
@@ -435,8 +436,8 @@ editor.colorScheme = ColorScheme(
 ## Custom Plugin
 
 Since v2.1.0 the [EditorKit](#editorkit) library supports writing custom
-plugins to extend it's functionality. If you're using the latest version, 
-you might be familiar with `PluginSupplier` and know how to use it's DSL. 
+plugins to extend it's functionality. If you're using the latest version,
+you might be familiar with `PluginSupplier` and know how to use it's DSL.
 See [More Options](#more-options) for info.
 
 **First,** you need to create a class which extends the `EditorPlugin`
@@ -451,7 +452,7 @@ class CustomPlugin : EditorPlugin("custom-plugin-id") {
         super.onAttached(editText)
         // TODO enable your feature here
     }
-    
+
     override fun onDetached(editText: TextProcessor) {
         super.onDetached(editText)
         // TODO disable your feature here
@@ -464,9 +465,9 @@ which invoked immediately after `onDraw(Canvas)` in code editor:
 
 ```kotlin
 class CustomPlugin : EditorPlugin("custom-plugin-id") {
-    
+
     var publicProperty = true
-    
+
     private val dividerPaint = Paint().apply {
         color = Color.GRAY
     }
@@ -603,6 +604,7 @@ class CustomLanguage : Language {
 ```
 
 Every language consist of 3 key components:
+
 1. **LanguageParser** is responsible for analyzing the source code. The
    code editor does not use this component directly.
 2. **SuggestionProvider** is responsible for collecting the names of
@@ -650,7 +652,7 @@ list up to date. This is done by calling the `processLine` method. This
 method is responsible for parsing a line of text and saving the code
 suggestions for that line.
 
-After calling `setTextContent` the code editor will call `processAllLines` 
+After calling `setTextContent` the code editor will call `processAllLines`
 to find all possible code suggestions.
 
 ```kotlin
@@ -699,9 +701,9 @@ class CustomStyler : LanguageStyler {
 
     override fun execute(structure: TextStructure): List<SyntaxHighlightResult> {
         val syntaxHighlightResults = mutableListOf<SyntaxHighlightResult>()
-        
+
         // TODO Implement syntax highlighting
-        
+
         return syntaxHighlightResults
     }
 }

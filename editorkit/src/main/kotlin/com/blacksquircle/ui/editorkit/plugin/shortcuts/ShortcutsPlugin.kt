@@ -41,8 +41,6 @@ class ShortcutsPlugin : EditorPlugin(PLUGIN_ID) {
             if (event == null ||
                 keyCode == KeyEvent.KEYCODE_CTRL_LEFT ||
                 keyCode == KeyEvent.KEYCODE_CTRL_RIGHT ||
-                keyCode == KeyEvent.KEYCODE_SHIFT_LEFT ||
-                keyCode == KeyEvent.KEYCODE_SHIFT_RIGHT ||
                 keyCode == KeyEvent.KEYCODE_ALT_LEFT ||
                 keyCode == KeyEvent.KEYCODE_ALT_RIGHT
             ) {
@@ -56,8 +54,8 @@ class ShortcutsPlugin : EditorPlugin(PLUGIN_ID) {
                 keyCode = keyCode,
             )
 
-            // Shortcuts can be handled only if one of following keys is pressed
-            if (shortcut.ctrl || shortcut.shift || shortcut.alt || keyCode in shortcutKeyFilter) {
+            // Shortcut can be handled only if ctrl or alt is pressed
+            if (shortcut.ctrl || shortcut.alt || keyCode in shortcutKeyFilter) {
                 if (onShortcutListener.onShortcut(shortcut)) {
                     return true
                 }
