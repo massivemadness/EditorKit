@@ -68,7 +68,7 @@ abstract class SyntaxHighlightEditText @JvmOverloads constructor(
 
     private var isSyntaxHighlighting = false
     private var isErrorSpansVisible = false
-    
+
     init {
         filters = arrayOf(InputFilter { source, start, end, dest, dstart, _ ->
             if (end - start == 1 && start < source.length && dstart < dest.length) {
