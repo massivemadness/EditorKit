@@ -25,7 +25,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MotionEvent
-import androidx.core.text.PrecomputedTextCompat
 import com.blacksquircle.ui.editorkit.plugin.base.EditorPlugin
 import com.blacksquircle.ui.editorkit.plugin.base.PluginContainer
 import com.blacksquircle.ui.editorkit.plugin.base.PluginSupplier

@@ -20,7 +20,6 @@ import android.content.Context
 import android.text.Editable
 import android.text.Spannable
 import android.util.AttributeSet
-import androidx.core.text.PrecomputedTextCompat
 import androidx.core.text.getSpans
 import com.blacksquircle.ui.editorkit.model.ColorScheme
 import com.blacksquircle.ui.editorkit.model.ErrorSpan
