@@ -184,10 +184,10 @@ open class TextProcessor @JvmOverloads constructor(
         }
     }
 
-    override fun setTextContent(textParams: PrecomputedTextCompat) {
-        super.setTextContent(textParams)
+    override fun setTextContent(text: CharSequence) {
+        super.setTextContent(text)
         for (plugin in plugins) {
-            plugin.setTextContent(textParams)
+            plugin.setTextContent(text)
         }
     }
 

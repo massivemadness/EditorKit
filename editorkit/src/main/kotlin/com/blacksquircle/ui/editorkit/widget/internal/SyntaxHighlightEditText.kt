@@ -69,10 +69,10 @@ abstract class SyntaxHighlightEditText @JvmOverloads constructor(
     private var isSyntaxHighlighting = false
     private var isErrorSpansVisible = false
 
-    override fun setTextContent(textParams: PrecomputedTextCompat) {
+    override fun setTextContent(text: CharSequence) {
         syntaxHighlightResults.clear()
         findResults.clear()
-        super.setTextContent(textParams)
+        super.setTextContent(text)
         syntaxHighlight()
     }
 

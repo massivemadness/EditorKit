@@ -24,8 +24,6 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.inputmethod.EditorInfo
-import androidx.core.text.PrecomputedTextCompat
-import androidx.core.widget.TextViewCompat
 import com.blacksquircle.ui.language.base.model.TextStructure
 
 abstract class LineNumbersEditText @JvmOverloads constructor(
@@ -90,17 +88,11 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
 
     open fun doAfterTextChanged(text: Editable?) = Unit
 
-    open fun setTextContent(textParams: PrecomputedTextCompat) {
-        removeTextChangedListener(textWatcher)
-        TextViewCompat.setPrecomputedText(this, textParams)
-        replaceText(0, structure.text.length, textParams)
-        addTextChangedListener(textWatcher)
-    }
-
     open fun setTextContent(text: CharSequence) {
-        val textParams = TextViewCompat.getTextMetricsParams(this)
-        val precomputedText = PrecomputedTextCompat.create(text, textParams)
-        setTextContent(precomputedText)
+        removeTextChangedListener(textWatcher)
+        setText(text)
+        replaceText(0, structure.text.length, text)
+        addTextChangedListener(textWatcher)
     }
 
     open fun replaceText(newStart: Int, newEnd: Int, newText: CharSequence) {

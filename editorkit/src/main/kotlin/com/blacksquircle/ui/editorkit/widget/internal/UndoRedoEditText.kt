@@ -18,7 +18,6 @@ package com.blacksquircle.ui.editorkit.widget.internal
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.core.text.PrecomputedTextCompat
 import com.blacksquircle.ui.editorkit.model.TextChange
 import com.blacksquircle.ui.editorkit.model.UndoStack
 import com.blacksquircle.ui.editorkit.setSelectionIndex
@@ -74,8 +73,8 @@ abstract class UndoRedoEditText @JvmOverloads constructor(
         }
     }
 
-    override fun setTextContent(textParams: PrecomputedTextCompat) {
-        super.setTextContent(textParams)
+    override fun setTextContent(text: CharSequence) {
+        super.setTextContent(text)
         onUndoRedoChangedListener?.onUndoRedoChanged()
     }
 
