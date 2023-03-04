@@ -18,6 +18,7 @@ package com.blacksquircle.ui.editorkit.widget.internal
 
 import android.content.Context
 import android.text.Editable
+import android.text.InputFilter
 import android.text.Spannable
 import android.util.AttributeSet
 import androidx.core.text.getSpans
@@ -67,6 +68,18 @@ abstract class SyntaxHighlightEditText @JvmOverloads constructor(
 
     private var isSyntaxHighlighting = false
     private var isErrorSpansVisible = false
+    
+    init {
+        filters = arrayOf(InputFilter { source, start, end, dest, dstart, _ ->
+            if (end - start == 1 && start < source.length && dstart < dest.length) {
+                val c = source[start]
+                if (c == '\t') {
+                    return@InputFilter tab()
+                }
+            }
+            source
+        })
+    }
 
     override fun setTextContent(text: CharSequence) {
         syntaxHighlightResults.clear()
