@@ -98,6 +98,18 @@ fun TextProcessor.duplicateLine() {
     text.insert(lineEnd, "\n" + lineText)
 }
 
+fun TextProcessor.toggleCase() {
+    val start = selStart
+    val selectedText = selectedText.toString()
+    val replacedText = if (selectedText.all(Char::isUpperCase)) {
+        selectedText.lowercase()
+    } else {
+        selectedText.uppercase()
+    }
+    text.replace(selStart, selEnd, replacedText)
+    setSelectionRange(start, start + replacedText.length)
+}
+
 fun TextProcessor.moveCaretToStartOfLine() {
     val currentLine = structure.getLineForIndex(selStart)
     val lineStart = structure.getIndexForStartOfLine(currentLine)
