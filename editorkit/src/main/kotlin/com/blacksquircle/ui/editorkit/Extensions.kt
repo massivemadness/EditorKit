@@ -91,11 +91,18 @@ fun TextProcessor.deleteLine() {
 }
 
 fun TextProcessor.duplicateLine() {
-    val currentLine = structure.getLineForIndex(selStart)
-    val lineStart = structure.getIndexForStartOfLine(currentLine)
-    val lineEnd = structure.getIndexForEndOfLine(currentLine)
-    val lineText = text.subSequence(lineStart, lineEnd)
-    text.insert(lineEnd, "\n" + lineText)
+    if (hasSelection()) {
+        val end = selEnd
+        val selectedText = selectedText.toString()
+        text.replace(selStart, selEnd, selectedText + selectedText)
+        setSelectionRange(end, end + selectedText.length)
+    } else {
+        val currentLine = structure.getLineForIndex(selStart)
+        val lineStart = structure.getIndexForStartOfLine(currentLine)
+        val lineEnd = structure.getIndexForEndOfLine(currentLine)
+        val lineText = text.subSequence(lineStart, lineEnd)
+        text.insert(lineEnd, "\n" + lineText)
+    }
 }
 
 fun TextProcessor.toggleCase() {
