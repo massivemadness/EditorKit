@@ -3,16 +3,36 @@
 This migration guide will help you adapt your existing code to match the
 latest version of [EditorKit](README.md#editorkit) library.
 
-1. [v2.3.0 -> v2.4.0](#v230---v240)
-1. [v2.2.0 -> v2.3.0](#v220---v230)
-1. [v2.1.2 -> v2.1.3](#v212---v213)
-2. [v2.0.0 -> v2.1.0](#v200---v210)
-3. [v1.3.0 -> v2.0.0](#v130---v200)
-4. [v1.2.1 -> v1.3.0](#v121---v130)
-5. [v1.2.0 -> v1.2.1](#v120---v121)
-6. [v1.1.0 -> v1.2.0](#v110---v120)
-7. [v1.0.1 -> v1.1.0](#v101---v110)
-8. [v1.0.0 -> v1.0.1](#v100---v101)
+* [v2.4.0 -> v2.5.0](#v240---v250)
+* [v2.3.0 -> v2.4.0](#v230---v240)
+* [v2.2.0 -> v2.3.0](#v220---v230)
+* [v2.1.2 -> v2.1.3](#v212---v213)
+* [v2.0.0 -> v2.1.0](#v200---v210)
+* [v1.3.0 -> v2.0.0](#v130---v200)
+* [v1.2.1 -> v1.3.0](#v121---v130)
+* [v1.2.0 -> v1.2.1](#v120---v121)
+* [v1.1.0 -> v1.2.0](#v110---v120)
+* [v1.0.1 -> v1.1.0](#v101---v110)
+* [v1.0.0 -> v1.0.1](#v100---v101)
+
+---
+
+## v2.4.0 -> v2.5.0
+
+Migration steps:
+
+1. If you're using custom plugin DSL, change `PluginSupplier#plugin()` signature:
+   ```kotlin
+   // Before
+   fun PluginSupplier.codeCompletion(block: AutoCompletePlugin.() -> Unit = {}) {
+       plugin(AutoCompletePlugin(), block)
+   }
+   
+   // After
+   fun PluginSupplier.codeCompletion(block: AutoCompletePlugin.() -> Unit = {}) {
+       plugin(AutoCompletePlugin().apply(block))
+   }
+   ```
 
 ---
 
