@@ -191,7 +191,7 @@ class RubyStyler private constructor() : LanguageStyler {
                         break
                     }
                 }
-            } catch (e: IOException) {
+            } catch (e: Throwable) {
                 Log.e(TAG, e.message, e)
                 break
             }
