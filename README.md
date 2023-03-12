@@ -501,7 +501,7 @@ adding your plugin to a `PluginSupplier`:
 
 ```kotlin
 fun PluginSupplier.lineDividers(block: CustomPlugin.() -> Unit = {}) {
-    plugin(CustomPlugin(), block)
+    plugin(CustomPlugin().apply(block))
 }
 ```
 
@@ -522,10 +522,7 @@ editor.plugins(pluginSupplier)
 # Languages
 
 The language modules provides support for programming languages. This
-includes syntax highlighting, code suggestions and source code parser.
-*~~(Note that source code parser currently works only in
-`language-javascript` module, but it will be implemented for more
-languages in the future)~~*
+includes syntax highlighting, code suggestions and ~~source code parser~~.
 
 [![MavenCentral](https://img.shields.io/maven-central/v/com.blacksquircle.ui/language-base?label=Download)](https://repo1.maven.org/maven2/com/blacksquircle/ui/language-base/)
 
