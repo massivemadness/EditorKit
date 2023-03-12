@@ -24,13 +24,17 @@ ext.libraryArtifactId = "language-c"
 
 apply from: rootProject.file("gradle/publish.gradle")
 
+group libraryGroupId
+version versions.publishVersionName
+
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-group libraryGroupId
-version versions.publishVersionName
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
 
 dependencies {
 
