@@ -15,8 +15,8 @@
  */
 
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    id 'java-library'
+    id 'kotlin'
 }
 
 ext.libraryGroupId = "com.blacksquircle.ui"
@@ -24,32 +24,13 @@ ext.libraryArtifactId = "language-xml"
 
 apply from: rootProject.file("gradle/publish.gradle")
 
-android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
-
-    group libraryGroupId
-    version versions.publishVersionName
-    namespace 'com.blacksquircle.ui.language.xml'
-
-    defaultConfig {
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
-
-        consumerProguardFiles 'consumer-rules.pro'
-
-        archivesBaseName = libraryArtifactId
-    }
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-    publishing {
-        singleVariant('release') {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
+
+group libraryGroupId
+version versions.publishVersionName
 
 dependencies {
 
