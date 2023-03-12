@@ -16,21 +16,17 @@
 
 package com.blacksquircle.ui.language.sql.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.sql.lexer.SqlLexer
 import com.blacksquircle.ui.language.sql.lexer.SqlToken
-import java.io.IOException
 import java.io.StringReader
 
 class SqlStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "SqlStyler"
 
         private var sqlStyler: SqlStyler? = null
 
@@ -251,7 +247,7 @@ class SqlStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

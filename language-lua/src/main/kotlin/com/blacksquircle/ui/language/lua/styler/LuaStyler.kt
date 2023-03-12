@@ -16,22 +16,18 @@
 
 package com.blacksquircle.ui.language.lua.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.lua.lexer.LuaLexer
 import com.blacksquircle.ui.language.lua.lexer.LuaToken
-import java.io.IOException
 import java.io.StringReader
 import java.util.regex.Pattern
 
 class LuaStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "LuaStyler"
 
         private val METHOD = Pattern.compile("(?<=(function)) (\\w+)")
 
@@ -190,7 +186,7 @@ class LuaStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

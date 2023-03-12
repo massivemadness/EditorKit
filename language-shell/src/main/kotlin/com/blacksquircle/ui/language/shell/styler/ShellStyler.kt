@@ -16,22 +16,18 @@
 
 package com.blacksquircle.ui.language.shell.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.shell.lexer.ShellLexer
 import com.blacksquircle.ui.language.shell.lexer.ShellToken
-import java.io.IOException
 import java.io.StringReader
 import java.util.regex.Pattern
 
 class ShellStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "ShellStyler"
 
         private val METHOD = Pattern.compile("(\\w+\\s*\\w*)\\(\\)\\s*\\{")
 
@@ -189,7 +185,7 @@ class ShellStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

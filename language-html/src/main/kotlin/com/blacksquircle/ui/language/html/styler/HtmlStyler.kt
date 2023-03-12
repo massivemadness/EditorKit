@@ -16,21 +16,17 @@
 
 package com.blacksquircle.ui.language.html.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.html.lexer.HtmlLexer
 import com.blacksquircle.ui.language.html.lexer.HtmlToken
-import java.io.IOException
 import java.io.StringReader
 
 class HtmlStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "HtmlStyler"
 
         private var htmlStyler: HtmlStyler? = null
 
@@ -109,7 +105,7 @@ class HtmlStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

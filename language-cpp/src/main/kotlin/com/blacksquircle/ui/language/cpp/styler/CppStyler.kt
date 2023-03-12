@@ -16,21 +16,17 @@
 
 package com.blacksquircle.ui.language.cpp.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.cpp.lexer.CppLexer
 import com.blacksquircle.ui.language.cpp.lexer.CppToken
-import java.io.IOException
 import java.io.StringReader
 
 class CppStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "CppStyler"
 
         private var cppStyler: CppStyler? = null
 
@@ -223,7 +219,7 @@ class CppStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

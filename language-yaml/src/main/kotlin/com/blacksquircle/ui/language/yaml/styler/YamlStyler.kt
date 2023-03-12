@@ -16,21 +16,17 @@
 
 package com.blacksquircle.ui.language.yaml.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.yaml.lexer.YamlLexer
 import com.blacksquircle.ui.language.yaml.lexer.YamlToken
-import java.io.IOException
 import java.io.StringReader
 
 class YamlStyler : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "YamlStyler"
 
         private var yamlStyler: YamlStyler? = null
 
@@ -103,7 +99,7 @@ class YamlStyler : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

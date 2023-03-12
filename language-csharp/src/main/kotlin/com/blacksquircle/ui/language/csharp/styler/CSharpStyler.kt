@@ -16,22 +16,18 @@
 
 package com.blacksquircle.ui.language.csharp.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.csharp.lexer.CSharpLexer
 import com.blacksquircle.ui.language.csharp.lexer.CSharpToken
-import java.io.IOException
 import java.io.StringReader
 import java.util.regex.Pattern
 
 class CSharpStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "CSharpStyler"
 
         // TODO support different return types
         private val METHOD = Pattern.compile("(?<=(void)) (\\w+)")
@@ -240,7 +236,7 @@ class CSharpStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

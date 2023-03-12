@@ -16,21 +16,17 @@
 
 package com.blacksquircle.ui.language.toml.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.toml.lexer.TomlLexer
 import com.blacksquircle.ui.language.toml.lexer.TomlToken
-import java.io.IOException
 import java.io.StringReader
 
 class TomlStyler : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "TomlStyler"
 
         private var tomlStyler: TomlStyler? = null
 
@@ -102,7 +98,7 @@ class TomlStyler : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

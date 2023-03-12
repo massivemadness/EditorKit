@@ -16,21 +16,17 @@
 
 package com.blacksquircle.ui.language.json.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.json.lexer.JsonLexer
 import com.blacksquircle.ui.language.json.lexer.JsonToken
-import java.io.IOException
 import java.io.StringReader
 
 class JsonStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "JsonStyler"
 
         private var jsonStyler: JsonStyler? = null
 
@@ -94,7 +90,7 @@ class JsonStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

@@ -16,22 +16,18 @@
 
 package com.blacksquircle.ui.language.java.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.java.lexer.JavaLexer
 import com.blacksquircle.ui.language.java.lexer.JavaToken
-import java.io.IOException
 import java.io.StringReader
 import java.util.regex.Pattern
 
 class JavaStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "JavaStyler"
 
         // TODO support different return types
         private val METHOD = Pattern.compile("(?<=(void)) (\\w+)")
@@ -217,7 +213,7 @@ class JavaStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

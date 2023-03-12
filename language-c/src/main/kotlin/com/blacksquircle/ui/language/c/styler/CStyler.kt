@@ -16,21 +16,17 @@
 
 package com.blacksquircle.ui.language.c.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.c.lexer.CLexer
 import com.blacksquircle.ui.language.c.lexer.CToken
-import java.io.IOException
 import java.io.StringReader
 
 class CStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "CStyler"
 
         private var cStyler: CStyler? = null
 
@@ -198,7 +194,7 @@ class CStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }

@@ -16,22 +16,18 @@
 
 package com.blacksquircle.ui.language.typescript.styler
 
-import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import com.blacksquircle.ui.language.base.model.TextStructure
 import com.blacksquircle.ui.language.base.model.TokenType
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.typescript.lexer.TypeScriptLexer
 import com.blacksquircle.ui.language.typescript.lexer.TypeScriptToken
-import java.io.IOException
 import java.io.StringReader
 import java.util.regex.Pattern
 
 class TypeScriptStyler private constructor() : LanguageStyler {
 
     companion object {
-
-        private const val TAG = "TypeScriptStyler"
 
         private val METHOD = Pattern.compile("(?<=(function)) (\\w+)")
 
@@ -238,7 +234,7 @@ class TypeScriptStyler private constructor() : LanguageStyler {
                     }
                 }
             } catch (e: Throwable) {
-                Log.e(TAG, e.message, e)
+                e.printStackTrace()
                 break
             }
         }
