@@ -111,7 +111,10 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
                 addLine(structure.getLineForIndex(start + i) + 1, start + i + 1)
             }
         }
-        structure.text.replace(start, end, newText)
+        val editable = structure.text
+        if (editable is Editable) {
+            editable.replace(start, end, newText)
+        }
     }
 
     open fun processLine(lineNumber: Int, lineStart: Int, lineEnd: Int) = Unit

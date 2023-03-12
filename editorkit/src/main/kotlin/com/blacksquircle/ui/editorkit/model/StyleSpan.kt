@@ -16,4 +16,14 @@
 
 package com.blacksquircle.ui.editorkit.model
 
-data class FindResult(var start: Int, var end: Int)
+import android.graphics.Color
+import androidx.annotation.ColorInt
+
+data class StyleSpan(
+    @ColorInt
+    val color: Int = Color.WHITE,
+    val bold: Boolean = false,
+    val italic: Boolean = false,
+    val underline: Boolean = false,
+    val strikethrough: Boolean = false
+)

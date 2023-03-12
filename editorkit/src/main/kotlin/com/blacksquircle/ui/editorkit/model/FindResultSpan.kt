@@ -14,16 +14,8 @@
  * limitations under the License.
  */
 
-package com.blacksquircle.ui.language.base.model
+package com.blacksquircle.ui.editorkit.model
 
-import android.graphics.Color
-import androidx.annotation.ColorInt
+import android.text.style.BackgroundColorSpan
 
-data class StyleSpan(
-    @ColorInt
-    val color: Int = Color.WHITE,
-    val bold: Boolean = false,
-    val italic: Boolean = false,
-    val underline: Boolean = false,
-    val strikethrough: Boolean = false
-)
+class FindResultSpan(span: StyleSpan) : BackgroundColorSpan(span.color)
