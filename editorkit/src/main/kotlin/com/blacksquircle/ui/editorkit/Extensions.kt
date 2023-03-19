@@ -44,23 +44,35 @@ fun EditText.insert(delta: CharSequence) {
 }
 
 fun EditText.cut() {
-    val clipboardManager = context.getSystemService<ClipboardManager>()
-    val clipData = ClipData.newPlainText("CUT", selectedText)
-    clipboardManager?.setPrimaryClip(clipData)
-    text.replace(selStart, selEnd, "")
+    try {
+        val clipboardManager = context.getSystemService<ClipboardManager>()
+        val clipData = ClipData.newPlainText("CUT", selectedText)
+        clipboardManager?.setPrimaryClip(clipData)
+        text.replace(selStart, selEnd, "")
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 }
 
 fun EditText.copy() {
-    val clipboardManager = context.getSystemService<ClipboardManager>()
-    val clipData = ClipData.newPlainText("COPY", selectedText)
-    clipboardManager?.setPrimaryClip(clipData)
+    try {
+        val clipboardManager = context.getSystemService<ClipboardManager>()
+        val clipData = ClipData.newPlainText("COPY", selectedText)
+        clipboardManager?.setPrimaryClip(clipData)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 }
 
 fun EditText.paste() {
-    val clipboardManager = context.getSystemService<ClipboardManager>()
-    val clipData = clipboardManager?.primaryClip?.getItemAt(0)
-    val clipText = clipData?.coerceToText(context)
-    text.replace(selStart, selEnd, clipText)
+    try {
+        val clipboardManager = context.getSystemService<ClipboardManager>()
+        val clipData = clipboardManager?.primaryClip?.getItemAt(0)
+        val clipText = clipData?.coerceToText(context)
+        text.replace(selStart, selEnd, clipText)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 }
 
 fun EditText.setSelectionRange(start: Int, end: Int) {
