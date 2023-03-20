@@ -24,6 +24,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import com.blacksquircle.ui.language.base.model.TextStructure
 
 abstract class LineNumbersEditText @JvmOverloads constructor(
@@ -90,8 +91,15 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
 
     open fun setTextContent(text: CharSequence) {
         removeTextChangedListener(textWatcher)
-        setText(text)
-        replaceText(0, structure.text.length, text)
+        try {
+            setText(text)
+            replaceText(0, structure.text.length, text)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            setText("")
+            replaceText(0, structure.text.length, "")
+            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+        }
         addTextChangedListener(textWatcher)
     }
 
