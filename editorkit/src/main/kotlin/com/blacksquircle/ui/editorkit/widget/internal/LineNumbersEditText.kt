@@ -49,9 +49,11 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             doBeforeTextChanged(s, start, count, after)
         }
+
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             doOnTextChanged(s, start, before, count)
         }
+
         override fun afterTextChanged(s: Editable?) {
             doAfterTextChanged(s)
         }
@@ -68,12 +70,17 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
             InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
     }
 
-    open fun doBeforeTextChanged(text: CharSequence?, start: Int, count: Int, after: Int) {
+    protected open fun doBeforeTextChanged(
+        text: CharSequence?,
+        start: Int,
+        count: Int,
+        after: Int
+    ) {
         textChangeStart = start
         textChangeEnd = start + count
     }
 
-    open fun doOnTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+    protected open fun doOnTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
         textChangedNewText = text?.subSequence(start, start + count) ?: ""
         replaceText(textChangeStart, textChangeEnd, textChangedNewText)
         val startLine = structure.getLineForIndex(textChangeStart)
@@ -87,7 +94,15 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
         }
     }
 
-    open fun doAfterTextChanged(text: Editable?) = Unit
+    protected open fun doAfterTextChanged(text: Editable?) = Unit
+
+    protected open fun processLine(lineNumber: Int, lineStart: Int, lineEnd: Int) = Unit
+
+    protected open fun addLine(lineNumber: Int, lineStart: Int) =
+        structure.add(lineNumber, lineStart)
+
+    protected open fun removeLine(lineNumber: Int) =
+        structure.remove(lineNumber)
 
     open fun setTextContent(text: CharSequence) {
         removeTextChangedListener(textWatcher)
@@ -103,7 +118,7 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
         addTextChangedListener(textWatcher)
     }
 
-    open fun replaceText(newStart: Int, newEnd: Int, newText: CharSequence) {
+    private fun replaceText(newStart: Int, newEnd: Int, newText: CharSequence) {
         val start = if (newStart < 0) 0 else newStart
         val end = if (newEnd > structure.text.length) structure.text.length else newEnd
         val newCharCount = newText.length - (end - start)
@@ -123,15 +138,5 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
         if (editable is Editable) {
             editable.replace(start, end, newText)
         }
-    }
-
-    open fun processLine(lineNumber: Int, lineStart: Int, lineEnd: Int) = Unit
-
-    open fun addLine(lineNumber: Int, lineStart: Int) {
-        structure.add(lineNumber, lineStart)
-    }
-
-    open fun removeLine(lineNumber: Int) {
-        structure.remove(lineNumber)
     }
 }
