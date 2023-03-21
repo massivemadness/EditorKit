@@ -23,32 +23,32 @@ import androidx.core.content.getSystemService
 import com.blacksquircle.ui.editorkit.exception.LineException
 import com.blacksquircle.ui.editorkit.widget.TextProcessor
 
-private val EditText.selStart: Int
-    get() = when {
-        selectionStart > text.length -> text.length
-        selectionStart < 0 -> 0
-        else -> selectionStart
-    }
-private val EditText.selEnd: Int
-    get() = when {
-        selectionEnd > text.length -> text.length
-        selectionEnd < 0 -> 0
-        else -> selectionEnd
+val EditText.selectionPair: Pair<Int, Int>
+    get() {
+        val start = selectionStart
+        val end = selectionEnd
+        return if (start > end) end to start else start to end
     }
 
-val EditText.selectedText: CharSequence
-    get() = text.subSequence(selStart, selEnd)
+val EditText.selectedText: String
+    get() {
+        val (start, end) = selectionPair
+        return text.substring(start, end)
+    }
 
 fun EditText.insert(delta: CharSequence) {
-    text.replace(selStart, selEnd, delta)
+    val (start, end) = selectionPair
+    text.replace(start, end, delta)
 }
 
 fun EditText.cut() {
     try {
         val clipboardManager = context.getSystemService<ClipboardManager>()
-        val clipData = ClipData.newPlainText("CUT", selectedText)
+        val clipData = ClipData.newPlainText(null, selectedText)
         clipboardManager?.setPrimaryClip(clipData)
-        text.replace(selStart, selEnd, "")
+
+        val (start, end) = selectionPair
+        text.replace(start, end, "")
     } catch (e: Exception) {
         e.printStackTrace()
     }
@@ -57,7 +57,7 @@ fun EditText.cut() {
 fun EditText.copy() {
     try {
         val clipboardManager = context.getSystemService<ClipboardManager>()
-        val clipData = ClipData.newPlainText("COPY", selectedText)
+        val clipData = ClipData.newPlainText(null, selectedText)
         clipboardManager?.setPrimaryClip(clipData)
     } catch (e: Exception) {
         e.printStackTrace()
@@ -69,7 +69,9 @@ fun EditText.paste() {
         val clipboardManager = context.getSystemService<ClipboardManager>()
         val clipData = clipboardManager?.primaryClip?.getItemAt(0)
         val clipText = clipData?.coerceToText(context)
-        text.replace(selStart, selEnd, clipText)
+
+        val (start, end) = selectionPair
+        text.replace(start, end, clipText)
     } catch (e: Exception) {
         e.printStackTrace()
     }
@@ -89,14 +91,14 @@ fun EditText.setSelectionIndex(index: Int) {
 }
 
 fun TextProcessor.selectLine() {
-    val currentLine = structure.getLineForIndex(selStart)
+    val currentLine = structure.getLineForIndex(selectionStart)
     val lineStart = structure.getIndexForStartOfLine(currentLine)
     val lineEnd = structure.getIndexForEndOfLine(currentLine)
     setSelectionRange(lineStart, lineEnd)
 }
 
 fun TextProcessor.deleteLine() {
-    val currentLine = structure.getLineForIndex(selStart)
+    val currentLine = structure.getLineForIndex(selectionStart)
     val lineStart = structure.getIndexForStartOfLine(currentLine)
     val lineEnd = structure.getIndexForEndOfLine(currentLine)
     text.delete(lineStart, lineEnd)
@@ -104,12 +106,11 @@ fun TextProcessor.deleteLine() {
 
 fun TextProcessor.duplicateLine() {
     if (hasSelection()) {
-        val end = selEnd
-        val selectedText = selectedText.toString()
-        text.replace(selStart, selEnd, selectedText + selectedText)
+        val (start, end) = selectionPair
+        text.replace(start, end, selectedText + selectedText)
         setSelectionRange(end, end + selectedText.length)
     } else {
-        val currentLine = structure.getLineForIndex(selStart)
+        val currentLine = structure.getLineForIndex(selectionStart)
         val lineStart = structure.getIndexForStartOfLine(currentLine)
         val lineEnd = structure.getIndexForEndOfLine(currentLine)
         val lineText = text.subSequence(lineStart, lineEnd)
@@ -118,25 +119,24 @@ fun TextProcessor.duplicateLine() {
 }
 
 fun TextProcessor.toggleCase() {
-    val start = selStart
-    val selectedText = selectedText.toString()
+    val (start, end) = selectionPair
     val replacedText = if (selectedText.all(Char::isUpperCase)) {
         selectedText.lowercase()
     } else {
         selectedText.uppercase()
     }
-    text.replace(selStart, selEnd, replacedText)
+    text.replace(start, end, replacedText)
     setSelectionRange(start, start + replacedText.length)
 }
 
 fun TextProcessor.moveCaretToStartOfLine() {
-    val currentLine = structure.getLineForIndex(selStart)
+    val currentLine = structure.getLineForIndex(selectionStart)
     val lineStart = structure.getIndexForStartOfLine(currentLine)
     setSelectionIndex(lineStart)
 }
 
 fun TextProcessor.moveCaretToEndOfLine() {
-    val currentLine = structure.getLineForIndex(selEnd)
+    val currentLine = structure.getLineForIndex(selectionEnd)
     val lineEnd = structure.getIndexForEndOfLine(currentLine)
     setSelectionIndex(lineEnd)
 }
