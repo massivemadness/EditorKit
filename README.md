@@ -463,8 +463,7 @@ class CustomPlugin : EditorPlugin("custom-plugin-id") {
 }
 ```
 
-**Second,** you can override lifecycle methods, for example `afterDraw`,
-which invoked immediately after `onDraw(Canvas)` in code editor:
+**Second,** you can override lifecycle methods, for example `onDraw(Canvas)`:
 
 ```kotlin
 class CustomPlugin : EditorPlugin("custom-plugin-id") {
