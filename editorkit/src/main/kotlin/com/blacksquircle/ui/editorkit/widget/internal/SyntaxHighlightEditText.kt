@@ -188,10 +188,8 @@ abstract class SyntaxHighlightEditText @JvmOverloads constructor(
 
     fun find(findResults: List<FindResult>) {
         clearFindResultSpans()
-        for (findResult in findResults) {
-            this.findResults.add(findResult)
-        }
         if (findResults.isNotEmpty()) {
+            this.findResults.addAll(findResults)
             selectResult()
         }
         updateSyntaxHighlighting()
@@ -281,12 +279,12 @@ abstract class SyntaxHighlightEditText @JvmOverloads constructor(
                 span.end += byHowMuch
             }
             /*if (span.start > span.end) {
-                syntaxHighlightSpans.remove(span) // FIXME may cause ConcurrentModificationException
+                syntaxHighlightSpans.remove(span) // FIXME ConcurrentModificationException
             }*/
         }
         for (findResult in findResults) {
             /*if (from > findResult.start && from <= findResult.end) {
-                findResultSpans.remove(findResult) // FIXME may cause IndexOutOfBoundsException
+                findResultSpans.remove(findResult) // FIXME ConcurrentModificationException
             }*/
             if (findResult.start > from) {
                 findResult.start += byHowMuch
@@ -310,14 +308,8 @@ abstract class SyntaxHighlightEditText @JvmOverloads constructor(
             val lineEnd = layout.getLineEnd(bottomVisibleLine)
 
             isSyntaxHighlighting = true
-            val textSyntaxSpans = text.getSpans<SyntaxHighlightSpan>(0, text.length)
-            for (span in textSyntaxSpans) {
-                // FIXME sometimes it leaves a few spans on the screen
-                // val isVisible = span.start in lineStart..lineEnd ||
-                //     span.start <= lineEnd && span.end >= lineStart
-                // if (inputMode || !isVisible) {
-                //     text.removeSpan(span)
-                // }
+            val textSyntaxHighlightSpans = text.getSpans<SyntaxHighlightSpan>(0, text.length)
+            for (span in textSyntaxHighlightSpans) {
                 text.removeSpan(span)
             }
             for (result in syntaxHighlightResults) {
@@ -356,8 +348,8 @@ abstract class SyntaxHighlightEditText @JvmOverloads constructor(
             }
             isSyntaxHighlighting = false
 
-            val textFindSpans = text.getSpans<FindResultSpan>(0, text.length)
-            for (span in textFindSpans) {
+            val textFindResultSpans = text.getSpans<FindResultSpan>(0, text.length)
+            for (span in textFindResultSpans) {
                 text.removeSpan(span)
             }
             findResultStyleSpan?.let { styleSpan ->
@@ -378,7 +370,7 @@ abstract class SyntaxHighlightEditText @JvmOverloads constructor(
             }
 
             if (!useSpacesInsteadOfTabs) {
-                // FIXME works pretty bad with word wrap
+                // FIXME word wrap issues
                 val textTabSpans = text.getSpans<TabWidthSpan>(0, text.length)
                 for (span in textTabSpans) {
                     text.removeSpan(span)
