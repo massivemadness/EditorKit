@@ -30,17 +30,17 @@ class StylingTask(
     private val singleThreadExecutor = Executors.newSingleThreadExecutor()
 
     fun execute() {
-        try {
-            singleThreadExecutor.execute {
+        singleThreadExecutor.execute {
+            try {
                 val syntaxHighlightSpans = doAsync()
                 mainThreadHandler.post {
                     if (!singleThreadExecutor.isShutdown) {
                         onSuccess(syntaxHighlightSpans)
                     }
                 }
+            } catch (e: Throwable) {
+                e.printStackTrace()
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 
