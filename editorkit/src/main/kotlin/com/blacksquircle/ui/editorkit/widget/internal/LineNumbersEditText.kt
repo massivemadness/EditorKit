@@ -43,6 +43,13 @@ abstract class LineNumbersEditText @JvmOverloads constructor(
             }
         }
 
+    var readOnly: Boolean = false
+        set(value) {
+            field = value
+            isFocusable = !value
+            isFocusableInTouchMode = !value
+        }
+
     val structure = TextStructure(SpannableStringBuilder())
 
     private val textWatcher = object : TextWatcher {
