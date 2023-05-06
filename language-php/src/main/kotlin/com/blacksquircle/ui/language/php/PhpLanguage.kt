@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.php.parser.PhpParser
 import com.blacksquircle.ui.language.php.provider.PhpProvider
 import com.blacksquircle.ui.language.php.styler.PhpStyler
@@ -28,19 +27,7 @@ import com.blacksquircle.ui.language.php.styler.PhpStyler
 class PhpLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "php"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(
-                ".php",
-                ".php3",
-                ".php4",
-                ".php5",
-                ".phps",
-                ".phtml",
-            )
-        }
     }
 
     override val languageName = LANGUAGE_NAME

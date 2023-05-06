@@ -18,6 +18,7 @@ package com.blacksquircle.ui.editorkit.utils
 
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.blacksquircle.ui.language.base.model.SyntaxHighlightResult
 import java.util.concurrent.Executors
 
@@ -39,7 +40,7 @@ class StylingTask(
                     }
                 }
             } catch (e: Throwable) {
-                e.printStackTrace()
+                Log.e(TAG, e.message, e)
             }
         }
     }

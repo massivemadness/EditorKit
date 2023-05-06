@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.kotlin.parser.KotlinParser
 import com.blacksquircle.ui.language.kotlin.provider.KotlinProvider
 import com.blacksquircle.ui.language.kotlin.styler.KotlinStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.kotlin.styler.KotlinStyler
 class KotlinLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "kotlin"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".kt", ".kts")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.shell.parser.ShellParser
 import com.blacksquircle.ui.language.shell.provider.ShellProvider
 import com.blacksquircle.ui.language.shell.styler.ShellStyler
@@ -28,20 +27,7 @@ import com.blacksquircle.ui.language.shell.styler.ShellStyler
 class ShellLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "shell"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(
-                ".sh",
-                ".ksh",
-                ".bsh",
-                ".csh",
-                ".tcsh",
-                ".zsh",
-                ".bash",
-            )
-        }
     }
 
     override val languageName = LANGUAGE_NAME

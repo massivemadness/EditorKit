@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.julia.styler.JuliaStyler
 class JuliaLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "julia"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".jl")
-        }
     }
 
     override val languageName = LANGUAGE_NAME
@@ -45,7 +40,6 @@ class JuliaLanguage : Language {
         } catch (ex: Exception){
             ex.printStackTrace();
         }*/
-
         return JuliaParser.getInstance()
     }
 

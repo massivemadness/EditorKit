@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.groovy.parser.GroovyParser
 import com.blacksquircle.ui.language.groovy.provider.GroovyProvider
 import com.blacksquircle.ui.language.groovy.styler.GroovyStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.groovy.styler.GroovyStyler
 class GroovyLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "groovy"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".groovy", ".gvy", ".gy", ".gsh", ".gradle")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.yaml.parser.YamlParser
 import com.blacksquircle.ui.language.yaml.provider.YamlProvider
 import com.blacksquircle.ui.language.yaml.styler.YamlStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.yaml.styler.YamlStyler
 class YamlLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "yaml"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".yaml", ".yml")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

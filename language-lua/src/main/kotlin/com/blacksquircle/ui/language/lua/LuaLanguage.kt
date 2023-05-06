@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.lua.styler.LuaStyler
 class LuaLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "lua"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".lua")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

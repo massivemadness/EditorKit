@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.toml.styler.TomlStyler
 class TomlLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "toml"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".toml")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

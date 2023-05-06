@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.csharp.styler.CSharpStyler
 class CSharpLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "csharp"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".cs")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

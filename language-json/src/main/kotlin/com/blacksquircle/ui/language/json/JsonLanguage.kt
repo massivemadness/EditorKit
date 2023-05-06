@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.json.styler.JsonStyler
 class JsonLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "json"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".json")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.markdown.styler.MarkdownStyler
 class MarkdownLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "markdown"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".md")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

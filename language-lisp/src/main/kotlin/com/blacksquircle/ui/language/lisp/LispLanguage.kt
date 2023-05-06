@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.lisp.parser.LispParser
 import com.blacksquircle.ui.language.lisp.provider.LispProvider
 import com.blacksquircle.ui.language.lisp.styler.LispStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.lisp.styler.LispStyler
 class LispLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "lisp"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".lisp", ".lsp", ".cl", ".l")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

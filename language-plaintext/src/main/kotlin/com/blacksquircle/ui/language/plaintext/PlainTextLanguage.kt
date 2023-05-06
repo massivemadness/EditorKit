@@ -26,7 +26,11 @@ import com.blacksquircle.ui.language.plaintext.styler.PlainTextStyler
 
 class PlainTextLanguage : Language {
 
-    override val languageName = "plaintext"
+    companion object {
+        const val LANGUAGE_NAME = "plaintext"
+    }
+
+    override val languageName = LANGUAGE_NAME
 
     override fun getParser(): LanguageParser {
         return PlainTextParser.getInstance()

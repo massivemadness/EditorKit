@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.typescript.parser.TypeScriptParser
 import com.blacksquircle.ui.language.typescript.provider.TypeScriptProvider
 import com.blacksquircle.ui.language.typescript.styler.TypeScriptStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.typescript.styler.TypeScriptStyler
 class TypeScriptLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "typescript"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".ts", ".mts", ".cts")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.ruby.styler.RubyStyler
 class RubyLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "ruby"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".rb")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

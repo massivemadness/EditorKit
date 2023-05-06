@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.smali.styler.SmaliStyler
 class SmaliLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "smali"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".smali")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

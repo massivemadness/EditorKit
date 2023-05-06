@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.python.parser.PythonParser
 import com.blacksquircle.ui.language.python.provider.PythonProvider
 import com.blacksquircle.ui.language.python.styler.PythonStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.python.styler.PythonStyler
 class PythonLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "python"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".py", ".pyw", ".pyi")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

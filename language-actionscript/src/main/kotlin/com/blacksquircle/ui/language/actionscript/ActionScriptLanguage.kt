@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.base.styler.LanguageStyler
 class ActionScriptLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "actionscript"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".as")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

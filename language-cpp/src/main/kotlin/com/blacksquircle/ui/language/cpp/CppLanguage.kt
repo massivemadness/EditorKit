@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.cpp.parser.CppParser
 import com.blacksquircle.ui.language.cpp.provider.CppProvider
 import com.blacksquircle.ui.language.cpp.styler.CppStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.cpp.styler.CppStyler
 class CppLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "cplusplus"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".c", ".cpp", ".h", ".hpp", ".ino")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

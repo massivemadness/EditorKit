@@ -27,12 +27,7 @@ import com.blacksquircle.ui.language.java.styler.JavaStyler
 class JavaLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "java"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".java")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

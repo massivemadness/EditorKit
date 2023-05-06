@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.sql.parser.SqlParser
 import com.blacksquircle.ui.language.sql.provider.SqlProvider
 import com.blacksquircle.ui.language.sql.styler.SqlStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.sql.styler.SqlStyler
 class SqlLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "sql"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".sql", ".sqlite", ".sqlite2", ".sqlite3")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.visualbasic.parser.VisualBasicParser
 import com.blacksquircle.ui.language.visualbasic.provider.VisualBasicProvider
 import com.blacksquircle.ui.language.visualbasic.styler.VisualBasicStyler
@@ -28,12 +27,7 @@ import com.blacksquircle.ui.language.visualbasic.styler.VisualBasicStyler
 class VisualBasicLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "visualbasic"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(".vb", ".bas", ".cls")
-        }
     }
 
     override val languageName = LANGUAGE_NAME

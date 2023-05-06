@@ -20,7 +20,6 @@ import com.blacksquircle.ui.language.base.Language
 import com.blacksquircle.ui.language.base.parser.LanguageParser
 import com.blacksquircle.ui.language.base.provider.SuggestionProvider
 import com.blacksquircle.ui.language.base.styler.LanguageStyler
-import com.blacksquircle.ui.language.base.utils.endsWith
 import com.blacksquircle.ui.language.xml.parser.XmlParser
 import com.blacksquircle.ui.language.xml.provider.XmlProvider
 import com.blacksquircle.ui.language.xml.styler.XmlStyler
@@ -28,21 +27,7 @@ import com.blacksquircle.ui.language.xml.styler.XmlStyler
 class XmlLanguage : Language {
 
     companion object {
-
         const val LANGUAGE_NAME = "xml"
-
-        fun supportFormat(fileName: String): Boolean {
-            return fileName.endsWith(
-                ".xhtml",
-                ".xht",
-                ".xml",
-                ".xaml",
-                ".xdf",
-                ".xmpp",
-                ".html",
-                ".htm",
-            )
-        }
     }
 
     override val languageName = LANGUAGE_NAME
