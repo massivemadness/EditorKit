@@ -538,6 +538,7 @@ dependencies {
   implementation 'com.blacksquircle.ui:language-c:2.6.0'
   implementation 'com.blacksquircle.ui:language-cpp:2.6.0'
   implementation 'com.blacksquircle.ui:language-csharp:2.6.0'
+  implementation 'com.blacksquircle.ui:language-css:2.6.0'
   implementation 'com.blacksquircle.ui:language-groovy:2.6.0'
   implementation 'com.blacksquircle.ui:language-html:2.6.0'
   implementation 'com.blacksquircle.ui:language-java:2.6.0'
