@@ -14,46 +14,33 @@
  * limitations under the License.
  */
 
-package com.blacksquircle.ui.language.css.lexer
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
 
-enum class CssToken {
-    NUMBER,
-    DATA_TYPE,
-    CLASS,
-    REGEX,
-    ANNOTATION,
-    IMPORTANT,
+ext.libraryGroupId = "com.blacksquircle.ui"
+ext.libraryArtifactId = "language-fortran"
 
-    PROPERTY,
-    VALUE,
-    FUNCTION,
+apply from: rootProject.file("gradle/publish.gradle")
 
-    PLUS,
-    GT,
-    TILDE,
-    XOR,
-    DOLLAR,
-    OR,
-    EQ,
+group libraryGroupId
+version versions.publishVersionName
 
-    LPAREN,
-    RPAREN,
-    LBRACE,
-    RBRACE,
-    LBRACK,
-    RBRACK,
-    COLON,
-    SEMICOLON,
-    COMMA,
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
-    DOUBLE_QUOTED_STRING,
-    SINGLE_QUOTED_STRING,
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
 
-    LINE_COMMENT,
-    BLOCK_COMMENT,
+dependencies {
 
-    IDENTIFIER,
-    WHITESPACE,
-    BAD_CHARACTER,
-    EOF
+    // Core
+    implementation library.kotlin
+
+    // Modules
+    api project(':editorkit:language-base')
 }

@@ -74,7 +74,7 @@ class CssStyler private constructor() : LanguageStyler {
                         continue // skip
                     }
                     CssToken.DATA_TYPE,
-                    CssToken.RESERVED_WORD -> {
+                    CssToken.CLASS -> {
                         val tokenType = TokenType.TAG_NAME
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
                         syntaxHighlightResults.add(syntaxHighlightResult)

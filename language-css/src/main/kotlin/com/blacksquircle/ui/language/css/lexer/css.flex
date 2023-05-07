@@ -60,7 +60,7 @@ BLOCK_COMMENT = "/"\*([^*] | \*+[^*/])*(\*+"/")?
 <YYINITIAL> {
   {CSS_NUMBER} { return CssToken.NUMBER; }
   {CSS_SELECTOR_PIECE} { return CssToken.DATA_TYPE; }
-  {CSS_PSEUDO_CLASS} { return CssToken.RESERVED_WORD; }
+  {CSS_PSEUDO_CLASS} { return CssToken.CLASS; }
   {CSS_AT_RULE} { return CssToken.REGEX; }
   {CSS_ID} { return CssToken.ANNOTATION; }
 

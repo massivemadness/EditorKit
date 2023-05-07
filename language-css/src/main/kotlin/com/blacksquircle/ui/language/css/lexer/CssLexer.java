@@ -1300,7 +1300,7 @@ public class CssLexer {
             // fall through
           case 69: break;
           case 34:
-            { return CssToken.RESERVED_WORD;
+            { return CssToken.CLASS;
             }
             // fall through
           case 70: break;
