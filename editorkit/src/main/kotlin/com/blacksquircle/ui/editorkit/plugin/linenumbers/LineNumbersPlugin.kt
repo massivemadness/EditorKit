@@ -16,12 +16,12 @@
 
 package com.blacksquircle.ui.editorkit.plugin.linenumbers
 
-import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.text.Editable
 import android.util.Log
+import android.util.TypedValue
 import com.blacksquircle.ui.editorkit.model.ColorScheme
 import com.blacksquircle.ui.editorkit.plugin.base.EditorPlugin
 import com.blacksquircle.ui.editorkit.utils.bottomVisibleLine
@@ -39,12 +39,17 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
     private val gutterCurrentLineNumberPaint = Paint()
     private val gutterTextPaint = Paint()
 
-    private val gutterMargin = 4.dp
+    private val gutterMargin: Int // 4dp
+        get() = (4 * editText.resources.displayMetrics.density).toInt()
     private var gutterWidth = 0
     private var gutterDigitCount = 0
 
     override fun onAttached(editText: TextProcessor) {
         super.onAttached(editText)
+        gutterCurrentLineNumberPaint.textSize = editText.textSize
+        gutterTextPaint.textSize = editText.textSize
+        gutterCurrentLineNumberPaint.typeface = editText.typeface
+        gutterTextPaint.typeface = editText.typeface
         Log.d(PLUGIN_ID, "LineNumbers plugin loaded successfully!")
     }
 
@@ -64,15 +69,11 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
         gutterDividerPaint.style = Paint.Style.STROKE
         gutterDividerPaint.strokeWidth = 2.6f
 
-        gutterCurrentLineNumberPaint.textSize = requireContext()
-            .resources.displayMetrics.scaledDensity * editText.textSize
         gutterCurrentLineNumberPaint.color = colorScheme.gutterCurrentLineNumberColor
         gutterCurrentLineNumberPaint.isAntiAlias = true
         gutterCurrentLineNumberPaint.isDither = false
         gutterCurrentLineNumberPaint.textAlign = Paint.Align.RIGHT
 
-        gutterTextPaint.textSize = requireContext()
-            .resources.displayMetrics.scaledDensity * editText.textSize
         gutterTextPaint.color = colorScheme.gutterTextColor
         gutterTextPaint.isAntiAlias = true
         gutterTextPaint.isDither = false
@@ -161,8 +162,12 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
 
     override fun setTextSize(size: Float) {
         super.setTextSize(size)
-        gutterCurrentLineNumberPaint.textSize = editText.textSize
-        gutterTextPaint.textSize = editText.textSize
+        val textSize = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP, size,
+            editText.resources.displayMetrics,
+        )
+        gutterCurrentLineNumberPaint.textSize = textSize
+        gutterTextPaint.textSize = textSize
     }
 
     override fun setTypeface(tf: Typeface?) {
@@ -206,10 +211,6 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
     }
 
     companion object {
-
         const val PLUGIN_ID = "line-numbers-1141"
-
-        private val Int.dp: Int
-            get() = (this * Resources.getSystem().displayMetrics.density).toInt()
     }
 }

@@ -106,7 +106,7 @@ open class TextProcessor @JvmOverloads constructor(
 
     override fun onSelectionChanged(selStart: Int, selEnd: Int) {
         super.onSelectionChanged(selStart, selEnd)
-        post {
+        if (layout != null) {
             for (plugin in plugins) {
                 plugin.onSelectionChanged(selStart, selEnd)
             }
@@ -192,7 +192,7 @@ open class TextProcessor @JvmOverloads constructor(
 
     override fun setTextSize(size: Float) {
         super.setTextSize(size)
-        post {
+        if (layout != null) {
             for (plugin in plugins) {
                 plugin.setTextSize(size)
             }
@@ -201,7 +201,7 @@ open class TextProcessor @JvmOverloads constructor(
 
     override fun setTypeface(tf: Typeface?) {
         super.setTypeface(tf)
-        post {
+        if (layout != null) {
             for (plugin in plugins) {
                 plugin.setTypeface(tf)
             }
