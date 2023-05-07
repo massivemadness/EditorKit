@@ -23,10 +23,13 @@ import com.blacksquircle.ui.language.base.styler.LanguageStyler
 import com.blacksquircle.ui.language.go.lexer.GoLexer
 import com.blacksquircle.ui.language.go.lexer.GoToken
 import java.io.StringReader
+import java.util.regex.Pattern
 
 class GoStyler private constructor() : LanguageStyler {
 
     companion object {
+
+        private val METHOD = Pattern.compile("(?<=(func)) (\\w+)")
 
         private var goStyler: GoStyler? = null
 
@@ -42,6 +45,15 @@ class GoStyler private constructor() : LanguageStyler {
         val syntaxHighlightResults = mutableListOf<SyntaxHighlightResult>()
         val sourceReader = StringReader(source)
         val lexer = GoLexer(sourceReader)
+
+        // FIXME flex doesn't support positive lookbehind
+        val matcher = METHOD.matcher(source)
+        matcher.region(0, source.length)
+        while (matcher.find()) {
+            val tokenType = TokenType.METHOD
+            val syntaxHighlightResult = SyntaxHighlightResult(tokenType, matcher.start(), matcher.end())
+            syntaxHighlightResults.add(syntaxHighlightResult)
+        }
 
         while (true) {
             try {
