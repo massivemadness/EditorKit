@@ -547,6 +547,7 @@ dependencies {
   implementation 'com.blacksquircle.ui:language-json:2.7.0'
   implementation 'com.blacksquircle.ui:language-julia:2.7.0'
   implementation 'com.blacksquircle.ui:language-kotlin:2.7.0'
+  implementation 'com.blacksquircle.ui:language-latex:2.7.0'
   implementation 'com.blacksquircle.ui:language-lisp:2.7.0'
   implementation 'com.blacksquircle.ui:language-lua:2.7.0'
   implementation 'com.blacksquircle.ui:language-markdown:2.7.0'
