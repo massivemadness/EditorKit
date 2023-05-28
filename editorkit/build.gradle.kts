@@ -19,19 +19,17 @@ import com.blacksquircle.gradle.Gradle
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("publish-module")
 }
 
-Gradle.Maven.libraryGroupId = "com.blacksquircle.ui"
-Gradle.Maven.libraryArtifactId = "editorkit"
-
-apply(from = "../../gradle/publish.gradle")
+publishModule {
+    libraryGroup = "com.blacksquircle.ui"
+    libraryArtifact = "editorkit"
+    libraryVersion = "2.8.0"
+}
 
 android {
     compileSdk = Gradle.Build.compileSdk
-    buildToolsVersion = Gradle.Build.buildTools
-
-    group = Gradle.Maven.libraryGroupId
-    version = Gradle.Maven.libraryVersionName
     namespace = "com.blacksquircle.ui.editorkit"
 
     defaultConfig {
@@ -71,7 +69,4 @@ dependencies {
 
     // Modules
     api(project(":editorkit:language-base"))
-
-    // Tests
-    testImplementation(libs.test.junit)
 }

@@ -14,30 +14,15 @@
  * limitations under the License.
  */
 
-import com.blacksquircle.gradle.Gradle
-
 plugins {
-    id("java-library")
-    id("kotlin")
+    id("language-module")
+    id("publish-module")
 }
 
-Gradle.Maven.libraryGroupId = "com.blacksquircle.ui"
-Gradle.Maven.libraryArtifactId = "language-cpp"
-
-apply(from = "../../gradle/publish.gradle")
-
-group = Gradle.Maven.libraryGroupId
-version = Gradle.Maven.libraryVersionName
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
-sourceSets {
-    named("main") {
-        java.srcDir("src/main/kotlin")
-    }
+publishModule {
+    libraryGroup = "com.blacksquircle.ui"
+    libraryArtifact = "language-cpp"
+    libraryVersion = "2.8.0"
 }
 
 dependencies {
