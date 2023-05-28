@@ -61,15 +61,15 @@ android {
 dependencies {
 
     // Core
-    implementation library.kotlin
-    implementation library.core
+    implementation libs.kotlin
+    implementation libs.androidx.core
 
     // UI
-    implementation library.vectordrawable
+    implementation libs.androidx.vectordrawable
 
     // Modules
     api project(':editorkit:language-base')
 
     // Tests
-    testImplementation library.junit
+    testImplementation libs.test.junit
 }
