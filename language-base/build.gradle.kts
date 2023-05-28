@@ -28,5 +28,5 @@ publishModule {
 dependencies {
 
     // Core
-    implementation(libs.kotlin)
+    implementation(libs.kotlin.stdlib)
 }

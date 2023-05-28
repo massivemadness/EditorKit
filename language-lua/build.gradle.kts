@@ -27,9 +27,6 @@ publishModule {
 
 dependencies {
 
-    // Core
-    implementation(libs.kotlin)
-
     // Modules
     api(project(":editorkit:language-base"))
 }

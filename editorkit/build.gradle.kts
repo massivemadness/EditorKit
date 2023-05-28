@@ -61,10 +61,8 @@ android {
 dependencies {
 
     // Core
-    implementation(libs.kotlin)
+    implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.core)
-
-    // UI
     implementation(libs.androidx.vectordrawable)
 
     // Modules
