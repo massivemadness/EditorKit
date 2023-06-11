@@ -191,7 +191,7 @@ enum class FortranToken {
     DIVEQ,
     EQEQ,
     EQ_OPERATOR,
-    TWO_COLON,
+    DOUBLE_COLON,
     LT,
     GT,
     EQ,

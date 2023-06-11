@@ -1754,7 +1754,7 @@ public class FortranLexer {
             // fall through
           case 204: break;
           case 19:
-            { return FortranToken.TWO_COLON;
+            { return FortranToken.DOUBLE_COLON;
             }
             // fall through
           case 205: break;

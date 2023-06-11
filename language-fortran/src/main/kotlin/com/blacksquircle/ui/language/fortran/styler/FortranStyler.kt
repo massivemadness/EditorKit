@@ -245,7 +245,7 @@ class FortranStyler private constructor() : LanguageStyler {
                     FortranToken.DIVEQ,
                     FortranToken.EQEQ,
                     FortranToken.EQ_OPERATOR,
-                    FortranToken.TWO_COLON,
+                    FortranToken.DOUBLE_COLON,
                     FortranToken.LT,
                     FortranToken.GT,
                     FortranToken.EQ,

@@ -556,6 +556,7 @@ dependencies {
   implementation 'com.blacksquircle.ui:language-plaintext:2.7.0'
   implementation 'com.blacksquircle.ui:language-python:2.7.0'
   implementation 'com.blacksquircle.ui:language-ruby:2.7.0'
+  implementation 'com.blacksquircle.ui:language-rust:2.7.0'
   implementation 'com.blacksquircle.ui:language-shell:2.7.0'
   implementation 'com.blacksquircle.ui:language-smali:2.7.0'
   implementation 'com.blacksquircle.ui:language-sql:2.7.0'

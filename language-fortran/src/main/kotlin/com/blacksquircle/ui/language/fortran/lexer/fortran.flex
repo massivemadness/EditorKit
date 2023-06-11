@@ -221,7 +221,7 @@ LINE_COMMENT = "!".*
   "/=" { return FortranToken.DIVEQ; }
   "==" { return FortranToken.EQEQ; }
   "=" { return FortranToken.EQ_OPERATOR; }
-  "::" { return FortranToken.TWO_COLON; }
+  "::" { return FortranToken.DOUBLE_COLON; }
   ".lt." { return FortranToken.LT; }
   ".gt." { return FortranToken.GT; }
   ".eq." { return FortranToken.EQ; }
