@@ -15,8 +15,8 @@
  */
 
 plugins {
-    id("language-module")
-    id("publish-module")
+    id("com.blacksquircle.language")
+    id("com.blacksquircle.publish")
 }
 
 publishModule {
