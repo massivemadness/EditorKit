@@ -57,7 +57,7 @@ open class TextProcessor @JvmOverloads constructor(
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         for (plugin in plugins) {
             plugin.drawBehind(canvas)
         }

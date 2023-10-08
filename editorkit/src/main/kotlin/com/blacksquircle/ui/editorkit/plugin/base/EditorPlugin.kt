@@ -59,8 +59,8 @@ abstract class EditorPlugin(val pluginId: String) {
 
     open fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) = Unit
     open fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) = Unit
-    open fun drawBehind(canvas: Canvas?) = Unit
-    open fun onDraw(canvas: Canvas?) = Unit
+    open fun drawBehind(canvas: Canvas) = Unit
+    open fun onDraw(canvas: Canvas) = Unit
 
     open fun onColorSchemeChanged(colorScheme: ColorScheme) = Unit
     open fun onLanguageChanged(language: Language?) = Unit

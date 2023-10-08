@@ -80,7 +80,7 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
         gutterTextPaint.textAlign = Paint.Align.RIGHT
     }
 
-    override fun drawBehind(canvas: Canvas?) {
+    override fun drawBehind(canvas: Canvas) {
         super.drawBehind(canvas)
         if (highlightCurrentLine) {
             val currentLineStart = structure.getLineForIndex(editText.selectionStart)
@@ -96,7 +96,7 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
                 val lineBottom = editText.layout.getLineBottom(bottomVisualLine) + editText.paddingTop
                 val width = editText.layout.width + editText.paddingLeft + editText.paddingRight
 
-                canvas?.drawRect(
+                canvas.drawRect(
                     gutterWidth.toFloat(),
                     lineTop.toFloat(),
                     width.toFloat(),
@@ -108,11 +108,11 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
         updateGutter()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (lineNumbers) {
             val currentLineStart = structure.getLineForIndex(editText.selectionStart)
-            canvas?.drawRect(
+            canvas.drawRect(
                 editText.scrollX.toFloat(),
                 editText.scrollY.toFloat(),
                 (gutterWidth + editText.scrollX).toFloat(),
@@ -131,7 +131,7 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
                 if (editText.layout == null) return
                 val number = structure.getLineForIndex(editText.layout.getLineStart(topVisibleLine))
                 if (number != prevLineNumber) {
-                    canvas?.drawText(
+                    canvas.drawText(
                         (number + 1).toString(),
                         textRight.toFloat(),
                         editText.layout.getLineBaseline(topVisibleLine) + editText.paddingTop.toFloat(),
@@ -145,7 +145,7 @@ class LineNumbersPlugin : EditorPlugin(PLUGIN_ID) {
                 prevLineNumber = number
                 topVisibleLine++
             }
-            canvas?.drawLine(
+            canvas.drawLine(
                 (gutterWidth + editText.scrollX).toFloat(),
                 editText.scrollY.toFloat(),
                 (gutterWidth + editText.scrollX).toFloat(),
