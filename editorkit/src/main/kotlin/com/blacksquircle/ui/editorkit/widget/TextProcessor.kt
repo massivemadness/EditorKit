@@ -41,7 +41,7 @@ open class TextProcessor @JvmOverloads constructor(
     }
 
     private val plugins = hashSetOf<EditorPlugin>()
-    private var _freezesText = true
+    private var internalFreezesText = true
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -68,12 +68,12 @@ open class TextProcessor @JvmOverloads constructor(
     }
 
     override fun getFreezesText(): Boolean {
-        return _freezesText
+        return internalFreezesText
     }
 
     override fun setFreezesText(freezesText: Boolean) {
         super.setFreezesText(freezesText)
-        _freezesText = freezesText
+        internalFreezesText = freezesText
     }
 
     override fun onColorSchemeChanged() {
