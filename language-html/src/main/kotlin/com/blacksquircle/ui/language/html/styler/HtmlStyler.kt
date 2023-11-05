@@ -76,19 +76,11 @@ class HtmlStyler private constructor() : LanguageStyler {
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
                         syntaxHighlightResults.add(syntaxHighlightResult)
                     }
-                    HtmlToken.XML_ATTRIBUTE_VALUE_TOKEN,
-                    HtmlToken.XML_ATTRIBUTE_VALUE_START_DELIMITER,
-                    HtmlToken.XML_ATTRIBUTE_VALUE_END_DELIMITER -> {
+                    HtmlToken.XML_ATTRIBUTE_VALUE -> {
                         val tokenType = TokenType.ATTR_VALUE
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
                         syntaxHighlightResults.add(syntaxHighlightResult)
                     }
-                    HtmlToken.XML_COMMENT_START,
-                    HtmlToken.XML_COMMENT_END,
-                    HtmlToken.XML_CONDITIONAL_COMMENT_START,
-                    HtmlToken.XML_CONDITIONAL_COMMENT_START_END,
-                    HtmlToken.XML_CONDITIONAL_COMMENT_END,
-                    HtmlToken.XML_CONDITIONAL_COMMENT_END_START,
                     HtmlToken.XML_COMMENT_CHARACTERS -> {
                         val tokenType = TokenType.COMMENT
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)

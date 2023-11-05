@@ -28,13 +28,9 @@ package com.blacksquircle.ui.language.html.lexer;
 %state END_TAG_NAME
 %state BEFORE_TAG_ATTRIBUTES
 %state TAG_ATTRIBUTES
-%state ATTRIBUTE_VALUE_START
-%state ATTRIBUTE_VALUE_DQ
-%state ATTRIBUTE_VALUE_SQ
+%state ATTRIBUTE_VALUE
 %state PROCESSING_INSTRUCTION
 %state TAG_CHARACTERS
-%state C_COMMENT_START
-%state C_COMMENT_END
 
 ALPHA = [:letter:]
 DIGIT = [0-9]
@@ -47,9 +43,13 @@ DTD_REF = "\"" [^\"]* "\"" | "'" [^']* "'"
 DOCTYPE = "<!" (D|d)(O|o)(C|c)(T|t)(Y|y)(P|p)(E|e)
 HTML = (H|h)(T|t)(M|m)(L|l)
 PUBLIC = (P|p)(U|u)(B|b)(L|l)(I|i)(C|c)
-END_COMMENT = "-->"
 
-CONDITIONAL_COMMENT_CONDITION = ({ALPHA})({ALPHA}|{WHITESPACE}|{DIGIT}|"."|"("|")"|"|"|"!"|"&")*
+CRLF = [\ \t \f]* \R
+DOUBLE_QUOTED_STRING = \"([^\\\"\r\n] | \\[^\r\n] | \\{CRLF})*\"?
+SINGLE_QUOTED_STRING = '([^\\'\r\n] | \\[^\r\n] | \\{CRLF})*'?
+
+START_COMMENT = "<!--"
+END_COMMENT = "-->"
 
 %%
 
@@ -59,12 +59,12 @@ CONDITIONAL_COMMENT_CONDITION = ({ALPHA})({ALPHA}|{WHITESPACE}|{DIGIT}|"."|"("|"
     "<?" { yybegin(PROCESSING_INSTRUCTION); return HtmlToken.XML_PI_START; }
     "<" {TAG_NAME} { yybegin(START_TAG_NAME); yypushback(yylength()); }
     "</" {TAG_NAME} { yybegin(END_TAG_NAME); yypushback(yylength()); }
-
-    "<!--" { yybegin(COMMENT); return HtmlToken.XML_COMMENT_START; }
     "</" { return HtmlToken.XML_END_TAG_START; }
 
     \\\$ { return HtmlToken.XML_DATA_CHARACTERS; }
     ([^<&\$# \n\r\t\f]|(\\\$)|(\\#))* { return HtmlToken.XML_DATA_CHARACTERS; }
+
+    {START_COMMENT} { yybegin(COMMENT); yypushback(yylength()); }
 
     {WHITESPACE} { return HtmlToken.WHITESPACE; }
 
@@ -76,7 +76,7 @@ CONDITIONAL_COMMENT_CONDITION = ({ALPHA})({ALPHA}|{WHITESPACE}|{DIGIT}|"."|"("|"
 
     {HTML} { return HtmlToken.XML_TAG_NAME; }
     {PUBLIC} { return HtmlToken.XML_DOCTYPE_PUBLIC; }
-    {DTD_REF} { return HtmlToken.XML_ATTRIBUTE_VALUE_TOKEN;}
+    {DTD_REF} { return HtmlToken.XML_ATTRIBUTE_VALUE;}
     {WHITESPACE} { return HtmlToken.WHITESPACE; }
 }
 
@@ -90,8 +90,8 @@ CONDITIONAL_COMMENT_CONDITION = ({ALPHA})({ALPHA}|{WHITESPACE}|{DIGIT}|"."|"("|"
 <TAG_ATTRIBUTES> {
     ">" { yybegin(YYINITIAL); return HtmlToken.XML_TAG_END; }
     "/>" { yybegin(YYINITIAL); return HtmlToken.XML_EMPTY_ELEMENT_END; }
-    \" { yybegin(ATTRIBUTE_VALUE_START); yypushback(1); }
-    \' { yybegin(ATTRIBUTE_VALUE_START); yypushback(1); }
+    \" { yybegin(ATTRIBUTE_VALUE); yypushback(1); }
+    \' { yybegin(ATTRIBUTE_VALUE); yypushback(1); }
 
     {ATTRIBUTE_NAME} { return HtmlToken.XML_ATTR_NAME; }
     {WHITESPACE} { return HtmlToken.WHITESPACE; }
@@ -136,67 +136,20 @@ CONDITIONAL_COMMENT_CONDITION = ({ALPHA})({ALPHA}|{WHITESPACE}|{DIGIT}|"."|"("|"
     [^] { return HtmlToken.XML_TAG_CHARACTERS; }
 }
 
-<ATTRIBUTE_VALUE_START> {
+<ATTRIBUTE_VALUE> {
     ">" { yybegin(YYINITIAL); return HtmlToken.XML_TAG_END; }
     "/>" { yybegin(YYINITIAL); return HtmlToken.XML_EMPTY_ELEMENT_END; }
 
-    [^ \n\r\t\f'\"\>]([^ \n\r\t\f\>]|(\/[^\>]))* { yybegin(TAG_ATTRIBUTES); return HtmlToken.XML_ATTRIBUTE_VALUE_TOKEN; }
-    "\"" { yybegin(ATTRIBUTE_VALUE_DQ); return HtmlToken.XML_ATTRIBUTE_VALUE_START_DELIMITER; }
-    "'" { yybegin(ATTRIBUTE_VALUE_SQ); return HtmlToken.XML_ATTRIBUTE_VALUE_START_DELIMITER; }
+    {DOUBLE_QUOTED_STRING} { yybegin(TAG_ATTRIBUTES); return HtmlToken.XML_ATTRIBUTE_VALUE; }
+    {SINGLE_QUOTED_STRING} { yybegin(TAG_ATTRIBUTES); return HtmlToken.XML_ATTRIBUTE_VALUE; }
 
     {WHITESPACE} { return HtmlToken.WHITESPACE; }
 }
 
-<ATTRIBUTE_VALUE_DQ> {
-    "\"" { yybegin(TAG_ATTRIBUTES); return HtmlToken.XML_ATTRIBUTE_VALUE_END_DELIMITER; }
-    \\\$ { return HtmlToken.XML_ATTRIBUTE_VALUE_TOKEN; }
-
-    [^] { return HtmlToken.XML_ATTRIBUTE_VALUE_TOKEN; }
-}
-
-<ATTRIBUTE_VALUE_SQ> {
-    "'" { yybegin(TAG_ATTRIBUTES); return HtmlToken.XML_ATTRIBUTE_VALUE_END_DELIMITER; }
-    \\\$ { return HtmlToken.XML_ATTRIBUTE_VALUE_TOKEN; }
-
-    [^] { return HtmlToken.XML_ATTRIBUTE_VALUE_TOKEN; }
-}
-
 <COMMENT> {
-    "[" { yybegin(C_COMMENT_START); return HtmlToken.XML_CONDITIONAL_COMMENT_START; }
-    "<![" { yybegin(C_COMMENT_END); return HtmlToken.XML_CONDITIONAL_COMMENT_END_START; }
-    "<!--" { return HtmlToken.BAD_CHARACTER; }
-    "<!--->" | "--!>" { yybegin(YYINITIAL); return HtmlToken.BAD_CHARACTER; }
-    ">" {
-          int loc = getTokenStart();
-          char prev = zzBuffer[loc - 1];
-          char prevPrev = zzBuffer[loc - 2];
-          if (prev == '-' && prevPrev == '-') {
-              yybegin(YYINITIAL); return HtmlToken.BAD_CHARACTER;
-          }
-          return HtmlToken.XML_COMMENT_CHARACTERS;
-      }
-
-    {END_COMMENT} | "<!-->" { yybegin(YYINITIAL); return HtmlToken.XML_COMMENT_END; }
+    {END_COMMENT} | "<!-->" { yybegin(YYINITIAL); return HtmlToken.XML_COMMENT_CHARACTERS; }
 
     [^] { return HtmlToken.XML_COMMENT_CHARACTERS; }
-}
-
-<C_COMMENT_START> {
-    "]>" { yybegin(COMMENT); return HtmlToken.XML_CONDITIONAL_COMMENT_START_END; }
-
-    {CONDITIONAL_COMMENT_CONDITION} { return HtmlToken.XML_COMMENT_CHARACTERS; }
-    {END_COMMENT} { yybegin(YYINITIAL); return HtmlToken.XML_COMMENT_END; }
-
-    [^] { yybegin(COMMENT); return HtmlToken.XML_COMMENT_CHARACTERS; }
-}
-
-<C_COMMENT_END> {
-    "]" { yybegin(COMMENT); return HtmlToken.XML_CONDITIONAL_COMMENT_END; }
-
-    {CONDITIONAL_COMMENT_CONDITION} { return HtmlToken.XML_COMMENT_CHARACTERS; }
-    {END_COMMENT} { yybegin(YYINITIAL); return HtmlToken.XML_COMMENT_END; }
-
-    [^] { yybegin(COMMENT); return HtmlToken.XML_COMMENT_CHARACTERS; }
 }
 
 "&lt;" { return HtmlToken.XML_CHAR_ENTITY_REF; }
