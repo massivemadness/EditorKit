@@ -79,19 +79,11 @@ class XmlStyler private constructor() : LanguageStyler {
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
                         syntaxHighlightResults.add(syntaxHighlightResult)
                     }
-                    XmlToken.XML_ATTRIBUTE_VALUE_TOKEN,
-                    XmlToken.XML_ATTRIBUTE_VALUE_START_DELIMITER,
-                    XmlToken.XML_ATTRIBUTE_VALUE_END_DELIMITER -> {
+                    XmlToken.XML_ATTRIBUTE_VALUE -> {
                         val tokenType = TokenType.ATTR_VALUE
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
                         syntaxHighlightResults.add(syntaxHighlightResult)
                     }
-                    XmlToken.XML_COMMENT_START,
-                    XmlToken.XML_COMMENT_END,
-                    XmlToken.XML_CONDITIONAL_COMMENT_START,
-                    XmlToken.XML_CONDITIONAL_COMMENT_START_END,
-                    XmlToken.XML_CONDITIONAL_COMMENT_END,
-                    XmlToken.XML_CONDITIONAL_COMMENT_END_START,
                     XmlToken.XML_COMMENT_CHARACTERS -> {
                         val tokenType = TokenType.COMMENT
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
