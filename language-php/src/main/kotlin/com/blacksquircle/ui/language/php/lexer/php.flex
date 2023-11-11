@@ -71,10 +71,12 @@ BLOCK_COMMENT = "/"\*([^*] | \*+[^*/])*(\*+"/")?
   "abstract"      { return PhpToken.ABSTRACT; }
   "as"            { return PhpToken.AS; }
   "break"         { return PhpToken.BREAK; }
+  "callable"      { return PhpToken.CALLABLE; }
   "case"          { return PhpToken.CASE; }
   "catch"         { return PhpToken.CATCH; }
   "const"         { return PhpToken.CONST; }
   "class"         { return PhpToken.CLASS; }
+  "clone"         { return PhpToken.CLONE; }
   "const"         { return PhpToken.CONST; }
   "continue"      { return PhpToken.CONTINUE; }
   "debugger"      { return PhpToken.DEBUGGER; }
@@ -113,6 +115,9 @@ BLOCK_COMMENT = "/"\*([^*] | \*+[^*/])*(\*+"/")?
   "private"       { return PhpToken.PRIVATE; }
   "protected"     { return PhpToken.PROTECTED; }
   "public"        { return PhpToken.PUBLIC; }
+  "readonly"      { return PhpToken.READONLY; }
+  "require"       { return PhpToken.REQUIRE; }
+  "require_once"  { return PhpToken.REQUIRE_ONCE; }
   "return"        { return PhpToken.RETURN; }
   "self"          { return PhpToken.SELF; }
   "static"        { return PhpToken.STATIC; }
@@ -123,6 +128,7 @@ BLOCK_COMMENT = "/"\*([^*] | \*+[^*/])*(\*+"/")?
   "throw"         { return PhpToken.THROW; }
   "throws"        { return PhpToken.THROWS; }
   "typeof"        { return PhpToken.TYPEOF; }
+  "trait"         { return PhpToken.TRAIT; }
   "transient"     { return PhpToken.TRANSIENT; }
   "try"           { return PhpToken.TRY; }
   "var"           { return PhpToken.VAR; }
@@ -150,13 +156,16 @@ BLOCK_COMMENT = "/"\*([^*] | \*+[^*/])*(\*+"/")?
   "die"           { return PhpToken.DIE; }
   "echo"          { return PhpToken.ECHO; }
   "empty"         { return PhpToken.EMPTY; }
+  "escape"        { return PhpToken.ESCAPE; }
   "eval"          { return PhpToken.EVAL; }
   "exit"          { return PhpToken.EXIT; }
+  "list"          { return PhpToken.LIST; }
   "parseInt"      { return PhpToken.PARSEINT; }
   "parseFloat"    { return PhpToken.PARSEFLOAT; }
   "print"         { return PhpToken.PRINT; }
-  "escape"        { return PhpToken.ESCAPE; }
   "unescape"      { return PhpToken.UNESCAPE; }
+  "unset"         { return PhpToken.UNSET; }
+  "isset"         { return PhpToken.ISSET; }
   "isNaN"         { return PhpToken.ISNAN; }
   "isFinite"      { return PhpToken.ISFINITE; }
 

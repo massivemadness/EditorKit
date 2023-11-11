@@ -123,10 +123,12 @@ class PhpStyler : LanguageStyler {
                     PhpToken.ABSTRACT,
                     PhpToken.AS,
                     PhpToken.BREAK,
+                    PhpToken.CALLABLE,
                     PhpToken.CASE,
                     PhpToken.CATCH,
                     PhpToken.CONST,
                     PhpToken.CLASS,
+                    PhpToken.CLONE,
                     PhpToken.CONTINUE,
                     PhpToken.DEBUGGER,
                     PhpToken.DEFAULT,
@@ -164,6 +166,9 @@ class PhpStyler : LanguageStyler {
                     PhpToken.PRIVATE,
                     PhpToken.PROTECTED,
                     PhpToken.PUBLIC,
+                    PhpToken.READONLY,
+                    PhpToken.REQUIRE,
+                    PhpToken.REQUIRE_ONCE,
                     PhpToken.RETURN,
                     PhpToken.SELF,
                     PhpToken.STATIC,
@@ -174,6 +179,7 @@ class PhpStyler : LanguageStyler {
                     PhpToken.THROW,
                     PhpToken.THROWS,
                     PhpToken.TYPEOF,
+                    PhpToken.TRAIT,
                     PhpToken.TRANSIENT,
                     PhpToken.TRY,
                     PhpToken.VAR,
@@ -181,9 +187,13 @@ class PhpStyler : LanguageStyler {
                     PhpToken.VOLATILE,
                     PhpToken.WHILE,
                     PhpToken.WITH -> {
-                        val tokenType = TokenType.KEYWORD
-                        val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
-                        syntaxHighlightResults.add(syntaxHighlightResult)
+                        syntaxHighlightResults.add(
+                            SyntaxHighlightResult(
+                                tokenType = TokenType.KEYWORD,
+                                start = lexer.tokenStart,
+                                end = lexer.tokenEnd
+                            )
+                        )
                     }
                     PhpToken.BOOLEAN,
                     PhpToken.BYTE,
@@ -210,13 +220,16 @@ class PhpStyler : LanguageStyler {
                     PhpToken.DIE,
                     PhpToken.EVAL,
                     PhpToken.EMPTY,
+                    PhpToken.ESCAPE,
                     PhpToken.ECHO,
                     PhpToken.EXIT,
+                    PhpToken.LIST,
                     PhpToken.PARSEINT,
                     PhpToken.PARSEFLOAT,
                     PhpToken.PRINT,
-                    PhpToken.ESCAPE,
                     PhpToken.UNESCAPE,
+                    PhpToken.UNSET,
+                    PhpToken.ISSET,
                     PhpToken.ISNAN,
                     PhpToken.ISFINITE -> {
                         val tokenType = TokenType.METHOD
