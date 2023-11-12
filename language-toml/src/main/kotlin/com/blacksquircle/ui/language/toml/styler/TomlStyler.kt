@@ -46,13 +46,11 @@ class TomlStyler : LanguageStyler {
         while (true) {
             try {
                 when (lexer.advance()) {
-                    TomlToken.BARE_KEY -> {
-                        val tokenType = TokenType.KEYWORD
+                    TomlToken.KEY -> {
+                        val tokenType = TokenType.ATTR_NAME
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
                         syntaxHighlightResults.add(syntaxHighlightResult)
                     }
-                    TomlToken.BARE_KEY_OR_DATE,
-                    TomlToken.BARE_KEY_OR_NUMBER,
                     TomlToken.DATE_TIME,
                     TomlToken.NUMBER -> {
                         val tokenType = TokenType.NUMBER
@@ -65,7 +63,7 @@ class TomlStyler : LanguageStyler {
                         syntaxHighlightResults.add(syntaxHighlightResult)
                     }
                     TomlToken.BOOLEAN -> {
-                        val tokenType = TokenType.LANG_CONST
+                        val tokenType = TokenType.ATTR_VALUE
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
                         syntaxHighlightResults.add(syntaxHighlightResult)
                     }
@@ -73,7 +71,7 @@ class TomlStyler : LanguageStyler {
                     TomlToken.LITERAL_STRING,
                     TomlToken.MULTILINE_BASIC_STRING,
                     TomlToken.MULTILINE_LITERAL_STRING -> {
-                        val tokenType = TokenType.STRING
+                        val tokenType = TokenType.ATTR_VALUE
                         val syntaxHighlightResult = SyntaxHighlightResult(tokenType, lexer.tokenStart, lexer.tokenEnd)
                         syntaxHighlightResults.add(syntaxHighlightResult)
                     }

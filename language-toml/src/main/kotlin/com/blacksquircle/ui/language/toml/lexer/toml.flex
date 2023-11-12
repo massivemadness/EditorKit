@@ -26,13 +26,6 @@ IDENTIFIER = [:jletter:] [:jletterdigit:]*
 LINE_TERMINATOR = \r|\n|\r\n
 WHITESPACE = {LINE_TERMINATOR} | [ \t\f]
 
-COMMENT = #[^\n\r]*
-BOOLEAN = true|false
-
-BARE_KEY = [_\-a-zA-Z]+
-BARE_KEY_OR_NUMBER = -?[0-9]+
-BARE_KEY_OR_DATE = {DATE}[Zz]?
-
 DEC_INT = [-+]?(0|[1-9](_?[0-9])*) // no leading zeros
 HEX_INT = 0x[0-9a-fA-F](_?[0-9a-fA-F])*
 OCT_INT = 0o[0-7](_?[0-7])*
@@ -49,6 +42,11 @@ DATE = [0-9]{4}-[0-9]{2}-[0-9]{2}
 TIME = [0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?
 OFFSET = [Zz]|[+-][0-9]{2}:[0-9]{2}
 DATE_TIME = ({DATE} ([Tt]{TIME})? | {TIME}) {OFFSET}?
+
+BOOLEAN = true|false
+COMMENT = #[^\n\r]*
+
+KEY = [_\-a-zA-Z]+
 
 ESCAPE = \\[^]
 BASIC_STRING = \"
@@ -68,15 +66,11 @@ MULTILINE_LITERAL_STRING = (\'\'\')
 
 <YYINITIAL> {
 
-  {WHITESPACE} { return TomlToken.WHITESPACE; }
-  {COMMENT} { return TomlToken.COMMENT; }
-  {BOOLEAN} { return TomlToken.BOOLEAN; }
-
-  {BARE_KEY} { return TomlToken.BARE_KEY; }
-  {BARE_KEY_OR_NUMBER} { return TomlToken.BARE_KEY_OR_NUMBER; }
-  {BARE_KEY_OR_DATE} { return TomlToken.BARE_KEY_OR_DATE; }
   {NUMBER} { return TomlToken.NUMBER; }
   {DATE_TIME} { return TomlToken.DATE_TIME; }
+  {BOOLEAN} { return TomlToken.BOOLEAN; }
+  {COMMENT} { return TomlToken.COMMENT; }
+  {KEY} { return TomlToken.KEY; }
 
   {BASIC_STRING} { return TomlToken.BASIC_STRING; }
   {LITERAL_STRING} { return TomlToken.LITERAL_STRING; }

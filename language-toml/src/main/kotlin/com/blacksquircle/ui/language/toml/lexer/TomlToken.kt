@@ -17,14 +17,11 @@
 package com.blacksquircle.ui.language.toml.lexer
 
 enum class TomlToken {
-    BARE_KEY,
-    BARE_KEY_OR_NUMBER,
-    BARE_KEY_OR_DATE,
-
     NUMBER,
-    COMMENT,
-    BOOLEAN,
     DATE_TIME,
+    BOOLEAN,
+    COMMENT,
+    KEY,
 
     BASIC_STRING,
     LITERAL_STRING,
