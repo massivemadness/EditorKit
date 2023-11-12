@@ -543,6 +543,7 @@ dependencies {
   implementation 'com.blacksquircle.ui:language-go:2.8.0'
   implementation 'com.blacksquircle.ui:language-groovy:2.8.0'
   implementation 'com.blacksquircle.ui:language-html:2.8.0'
+  implementation 'com.blacksquircle.ui:language-ini:2.8.0'
   implementation 'com.blacksquircle.ui:language-java:2.8.0'
   implementation 'com.blacksquircle.ui:language-javascript:2.8.0'
   implementation 'com.blacksquircle.ui:language-json:2.8.0'
