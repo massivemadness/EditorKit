@@ -25,7 +25,7 @@ plugins {
 publishModule {
     libraryGroup = "com.blacksquircle.ui"
     libraryArtifact = "editorkit"
-    libraryVersion = "2.8.0"
+    libraryVersion = "2.9.0"
 }
 
 android {

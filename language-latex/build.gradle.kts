@@ -22,7 +22,7 @@ plugins {
 publishModule {
     libraryGroup = "com.blacksquircle.ui"
     libraryArtifact = "language-latex"
-    libraryVersion = "2.8.0"
+    libraryVersion = "2.9.0"
 }
 
 dependencies {
