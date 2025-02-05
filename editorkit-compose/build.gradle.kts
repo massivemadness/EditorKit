@@ -1,0 +1,79 @@
+/*
+ * Copyright 2023 Squircle CE contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import com.blacksquircle.ui.BuildConst
+
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    id("com.blacksquircle.publish")
+}
+
+publishModule {
+    libraryGroup = "com.blacksquircle.ui"
+    libraryArtifact = "editorkit-compose"
+    libraryVersion = "2.9.0"
+}
+
+android {
+    compileSdk = BuildConst.COMPILE_SDK
+    namespace = "com.blacksquircle.ui.editorkit.compose"
+
+    defaultConfig {
+        minSdk = BuildConst.MIN_SDK
+
+        consumerProguardFiles("consumer-rules.pro")
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    sourceSets {
+        named("main") {
+            java.srcDir("src/main/kotlin")
+        }
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+}
+
+dependencies {
+
+    // Core
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.vectordrawable)
+
+    // Compose
+    implementation(libs.compose.ui)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.compose.preview)
+    debugImplementation(libs.compose.tooling)
+    debugImplementation(libs.compose.manifest)
+
+    // Modules
+    api(project(":editorkit:editorkit"))
+    api(project(":editorkit:language-base"))
+}
