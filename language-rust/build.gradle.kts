@@ -15,7 +15,7 @@
  */
 
 plugins {
-    id("com.blacksquircle.language")
+    id("com.blacksquircle.kotlin")
     id("com.blacksquircle.publish")
 }
 
@@ -23,6 +23,11 @@ publishModule {
     libraryGroup = "com.blacksquircle.ui"
     libraryArtifact = "language-rust"
     libraryVersion = "2.9.0"
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 dependencies {
